@@ -165,14 +165,14 @@ jobs:
           ( tail -f /home/runner/saashq-wrench/sites/coverage.xml & ) | grep -q "\/coverage"
 
       - name: Upload JS coverage data
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'
         with:
           name: coverage-js-${{ matrix.container }}
           path: /home/runner/saashq-wrench/apps/saashq/.cypress-coverage/clover.xml
 
       - name: Upload python coverage data
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'
         with:
           name: coverage-py-${{ matrix.container }}
