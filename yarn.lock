@@ -459,9 +459,9 @@ acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
-"air-datepicker@git+https://github.com/saashq/air-datepicker":
+"air-datepicker@git+https://github.com/saashqdev/air-datepicker":
   version "2.2.3"
-  resolved "git+https://github.com/saashq/air-datepicker#ed37b94d95c68d8544357e330be0c89d044a3eea"
+  resolved "git+https://github.com/saashqdev/air-datepicker#ed37b94d95c68d8544357e330be0c89d044a3eea"
   dependencies:
     jquery ">=2.0.0 <4.0.0"
 
@@ -1485,7 +1485,7 @@ fraction.js@^4.3.6:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
-saashq-charts@2.0.0-rc22:
+saashq-charts@2.0.0-rc25:
   version "2.0.0-rc22"
   resolved "https://registry.yarnpkg.com/saashq-charts/-/saashq-charts-2.0.0-rc22.tgz#9a5a747febdc381a1d4d7af96e89cf519dfba8c0"
   integrity sha512-N7f/8979wJCKjusOinaUYfMxB80YnfuVLrSkjpj4LtyqS0BGS6SuJxUnb7Jl4RWUFEIs7zEhideIKnyLeFZF4Q==

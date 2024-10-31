@@ -64,7 +64,7 @@ jobs:
           cache: pip
 
       - name: Download Semgrep rules
-        run: git clone --depth 1 https://github.com/saashq/semgrep-rules.git saashq-semgrep-rules
+        run: git clone --depth 1 https://github.com/saashqdev/semgrep-rules.git saashq-semgrep-rules
 
       - name: Run Semgrep rules
         run: |

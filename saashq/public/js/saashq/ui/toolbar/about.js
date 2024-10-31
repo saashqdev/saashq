@@ -12,7 +12,7 @@ saashq.ui.misc.about = function () {
 						<a href='https://saashqframework.com' target='_blank'>https://saashqframework.com</a></p>
 					<p><i class='fa fa-github fa-fw'></i>
 						${__("Source")}:
-						<a href='https://github.com/saashq' target='_blank'>https://github.com/saashq</a></p>
+						<a href='https://github.com/saashqdev' target='_blank'>https://github.com/saashqdev</a></p>
 					<p><i class='fa fa-graduation-cap fa-fw'></i>
 						Saashq School: <a href='https://saashq.school' target='_blank'>https://saashq.school</a></p>
 					<p><i class='fa fa-linkedin fa-fw'></i>

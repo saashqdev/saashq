@@ -61,7 +61,7 @@ jobs:
 
         source env/bin/activate
         cd apps/saashq/
-        git remote set-url upstream https://github.com/saashqdev/saashq.git
+        git remote set-url upstream https://github.com/saashqdevdev/saashq.git
 
     - name: Update to v14
       run: |

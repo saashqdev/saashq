@@ -125,7 +125,7 @@ jobs:
 
           source env/bin/activate
           cd apps/saashq/
-          git remote set-url upstream https://github.com/saashqdev/saashq.git
+          git remote set-url upstream https://github.com/saashqdevdev/saashq.git
 
           function update_to_version() {
             version=$1

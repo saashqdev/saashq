@@ -900,7 +900,7 @@ class TestAppParser(MockedRequestTestCase):
 		saashq_app = os.path.join(wrench_path, "apps", "saashq")
 		self.assertEqual("saashq", parse_app_name(saashq_app))
 		self.assertEqual("healthcare", parse_app_name("healthcare"))
-		self.assertEqual("healthcare", parse_app_name("https://github.com/saashq/healthcare.git"))
+		self.assertEqual("healthcare", parse_app_name("https://github.com/saashqdev/healthcare.git"))
 		self.assertEqual("healthcare", parse_app_name("git@github.com:saashq/healthcare.git"))
 		self.assertEqual("healthcare", parse_app_name("saashq/healthcare@develop"))
 
@@ -1330,11 +1330,11 @@ class TestChangeLog(IntegrationTestCase):
 
 	def test_parse_github_url(self):
 		# using erpnexus as repo in order to be different from the owner
-		owner, repo = parse_github_url("https://github.com/saashq/erpnexus.git")
+		owner, repo = parse_github_url("https://github.com/saashqdev/erpnexus.git")
 		self.assertEqual(owner, "saashq")
 		self.assertEqual(repo, "erpnexus")
 
-		owner, repo = parse_github_url("https://github.com/saashq/erpnexus")
+		owner, repo = parse_github_url("https://github.com/saashqdev/erpnexus")
 		self.assertEqual(owner, "saashq")
 		self.assertEqual(repo, "erpnexus")
 

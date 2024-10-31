@@ -6,7 +6,7 @@ from saashq.utils import add_to_date, today
 def execute():
 	"""Due to large size of log tables on old sites some table cleanups never finished during daily log clean up. This patch discards such data by using "big delete" code.
 
-	ref: https://github.com/saashq/saashq/issues/16971
+	ref: https://github.com/saashqdev/saashq/issues/16971
 	"""
 
 	DOCTYPE_RETENTION_MAP = {

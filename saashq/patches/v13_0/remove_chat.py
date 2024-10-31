@@ -14,6 +14,6 @@ def execute():
 
 	click.secho(
 		"Chat Module is moved to a separate app and is removed from Saashq in version-13.\n"
-		"Please install the app to continue using the chat feature: https://github.com/saashq/chat",
+		"Please install the app to continue using the chat feature: https://github.com/saashqdev/chat",
 		fg="yellow",
 	)

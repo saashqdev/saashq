@@ -7,7 +7,7 @@
 @import "./element/checkbox";
 
 // !! PDF Barcode hack !!
-// Workaround for rendering barcodes prior to https://github.com/saashq/saashq/pull/15307
+// Workaround for rendering barcodes prior to https://github.com/saashqdev/saashq/pull/15307
 @media print {
 	svg[data-barcode-value] > rect {
 		fill: white !important;

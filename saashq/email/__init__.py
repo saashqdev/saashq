@@ -32,7 +32,7 @@ def get_contact_list(txt, page_length=20, extra_filters: str | None = None) -> l
 
 	# The multiselect field will store the `label` as the selected value.
 	# The `value` is just used as a unique key to distinguish between the options.
-	# https://github.com/saashq/saashq/blob/6c6a89bcdd9454060a1333e23b855d0505c9ebc2/saashq/public/js/saashq/form/controls/autocomplete.js#L29-L35
+	# https://github.com/saashqdev/saashq/blob/6c6a89bcdd9454060a1333e23b855d0505c9ebc2/saashq/public/js/saashq/form/controls/autocomplete.js#L29-L35
 	return [
 		saashq._dict(
 			value=d.email_id,

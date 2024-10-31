@@ -559,7 +559,7 @@ re.purge()
 # Calling gc.freeze() moves all the objects imported so far into permanant generation and hence
 # doesn't mutate `PyGC_Head`
 #
-# Refer to issue for more info: https://github.com/saashq/saashq/issues/18927
+# Refer to issue for more info: https://github.com/saashqdev/saashq/issues/18927
 if saashq._tune_gc:
 	gc.collect()  # clean up any garbage created so far before freeze
 	gc.freeze()

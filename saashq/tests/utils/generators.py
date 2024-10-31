@@ -95,7 +95,7 @@ def get_missing_records_module_overrides(module) -> [list, list]:
 		deprecation_warning(
 			"2024-10-09",
 			"v17",
-			"""test_dependencies was clarified to EXTRA_TEST_RECORD_DEPENDENCIES; migration script: https://github.com/saashq/saashq/pull/28060""",
+			"""test_dependencies was clarified to EXTRA_TEST_RECORD_DEPENDENCIES; migration script: https://github.com/saashqdev/saashq/pull/28060""",
 		)
 		to_add += module.test_dependencies
 
@@ -108,7 +108,7 @@ def get_missing_records_module_overrides(module) -> [list, list]:
 		deprecation_warning(
 			"2024-10-09",
 			"v17",
-			"""test_ignore was clarified to IGNORE_TEST_RECORD_DEPENDENCIES; migration script: https://github.com/saashq/saashq/pull/28060""",
+			"""test_ignore was clarified to IGNORE_TEST_RECORD_DEPENDENCIES; migration script: https://github.com/saashqdev/saashq/pull/28060""",
 		)
 		to_remove += module.test_ignore
 
@@ -129,7 +129,7 @@ def load_test_records_for(index_doctype) -> dict[str, Any] | list:
 			deprecation_warning(
 				"2024-10-09",
 				"v18",
-				"Use TOML files for test records; migration script: https://github.com/saashq/saashq/pull/28065",
+				"Use TOML files for test records; migration script: https://github.com/saashqdev/saashq/pull/28065",
 			)
 		with open(json_path) as f:
 			return json.load(f)

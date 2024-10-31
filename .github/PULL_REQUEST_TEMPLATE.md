@@ -12,11 +12,11 @@ Some key notes before you open a PR:
 
 Also, if you're new here
 
-- Documentation Guidelines => https://github.com/saashq/erpnexus/wiki/Updating-Documentation
+- Documentation Guidelines => https://github.com/saashqdev/erpnexus/wiki/Updating-Documentation
 
-- Contribution Guide => https://github.com/saashqdev/saashq/blob/develop/.github/CONTRIBUTING.md
+- Contribution Guide => https://github.com/saashqdevdev/saashq/blob/develop/.github/CONTRIBUTING.md
 
-- Pull Request Checklist => https://github.com/saashq/erpnexus/wiki/Pull-Request-Checklist
+- Pull Request Checklist => https://github.com/saashqdev/erpnexus/wiki/Pull-Request-Checklist
 
 -->
 

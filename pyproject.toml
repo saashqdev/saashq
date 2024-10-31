@@ -93,8 +93,8 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://saashqframework.com/"
-Repository = "https://github.com/saashq/saashq.git"
-"Bug Reports" = "https://github.com/saashq/saashq/issues"
+Repository = "https://github.com/saashqdev/saashq.git"
+"Bug Reports" = "https://github.com/saashqdev/saashq/issues"
 
 [project.optional-dependencies]
 dev = [

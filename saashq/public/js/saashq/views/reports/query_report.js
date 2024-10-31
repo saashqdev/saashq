@@ -1,6 +1,6 @@
 // Copyright (c) 2018, Saashq Technologies Pvt. Ltd. and Contributors
 // MIT License. See license.txt
-import DataTable from "saashq-datatable";
+import DataTable from "@saashq/datatable";
 
 // Expose DataTable globally to allow customizations.
 window.DataTable = DataTable;

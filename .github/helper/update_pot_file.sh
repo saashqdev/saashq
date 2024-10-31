@@ -19,7 +19,7 @@ git config user.name "saashq-pr-bot"
 
 echo "Setting the correct git remote..."
 # Here, the git remote is a local file path by default. Let's change it to the upstream repo.
-git remote set-url upstream https://github.com/saashqdev/saashq.git
+git remote set-url upstream https://github.com/saashqdevdev/saashq.git
 
 echo "Creating a new branch..."
 isodate=$(date -u +"%Y-%m-%d")

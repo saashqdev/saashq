@@ -9,7 +9,7 @@ Welcome to the Saashq Framework issue tracker! Before creating an issue, please 
 
 1. This tracker should only be used to report bugs and request features / enhancements to Saashq
     - For questions and general support, use https://stackoverflow.com/questions/tagged/saashq
-    - For documentation issues, refer to https://saashqframework.com/docs/user/en or the developer cheetsheet https://github.com/saashqdev/saashq/wiki/Developer-Cheatsheet
+    - For documentation issues, refer to https://saashqframework.com/docs/user/en or the developer cheetsheet https://github.com/saashqdevdev/saashq/wiki/Developer-Cheatsheet
 2. Use the search function before creating a new issue. Duplicates will be closed and directed to
    the original discussion.
 3. When making a bug report, make sure you provide all required information. The easier it is for

@@ -67,7 +67,7 @@ if doc.allocated_to:
 </pre>
 
 <h5>Payment processing</h5>
-<p>Payment processing events have a special state. See the <a href="https://github.com/saashq/payments/blob/develop/payments/controllers/payment_controller.py">PaymentController in Saashq Payments</a> for details.</p>
+<p>Payment processing events have a special state. See the <a href="https://github.com/saashqdev/payments/blob/develop/payments/controllers/payment_controller.py">PaymentController in Saashq Payments</a> for details.</p>
 <pre>
 	<code>
 # retreive payment session state

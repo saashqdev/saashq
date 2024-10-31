@@ -14,18 +14,18 @@ Full-stack web application framework that uses Python and MariaDB on the server 
 
 ### Production
 * [Managed Hosting on Saashq Cloud](https://saashqcloud.com/)
-* [Easy install script using Docker images](https://github.com/saashq/wrench/tree/develop#easy-install-script)
-* [Manual install using Docker images](https://github.com/saashq/saashq_docker)
+* [Easy install script using Docker images](https://github.com/saashqdev/wrench/tree/develop#easy-install-script)
+* [Manual install using Docker images](https://github.com/saashqdev/saashq_docker)
 
 ### Development
-* [Easy install script using Docker images](https://github.com/saashq/wrench/tree/develop#easy-install-script)
+* [Easy install script using Docker images](https://github.com/saashqdev/wrench/tree/develop#easy-install-script)
 * [Development installation on bare metal](https://saashqframework.com/docs/user/en/installation)
 
 
 ## Contributing
 
 1. [Code of Conduct](CODE_OF_CONDUCT.md)
-1. [Contribution Guidelines](https://github.com/saashq/erpnexus/wiki/Contribution-Guidelines)
+1. [Contribution Guidelines](https://github.com/saashqdev/erpnexus/wiki/Contribution-Guidelines)
 1. [Security Policy](SECURITY.md)
 
 ## Resources

@@ -856,7 +856,7 @@ jobs:
       - uses: pre-commit/action@v3.0.0
 
       - name: Download Semgrep rules
-        run: git clone --depth 1 https://github.com/saashq/semgrep-rules.git saashq-semgrep-rules
+        run: git clone --depth 1 https://github.com/saashqdev/semgrep-rules.git saashq-semgrep-rules
 
       - name: Run Semgrep rules
         run: |
@@ -896,7 +896,7 @@ readme_template = """### {app_title}
 
 ### Installation
 
-You can install this app using the [wrench](https://github.com/saashq/wrench) CLI:
+You can install this app using the [wrench](https://github.com/saashqdev/wrench) CLI:
 
 ```bash
 cd $PATH_TO_YOUR_WRENCH
@@ -931,6 +931,6 @@ readme_ci_section = """
 This app can use GitHub Actions for CI. The following workflows are configured:
 
 - CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Saashq Semgrep Rules](https://github.com/saashq/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
+- Linters: Runs [Saashq Semgrep Rules](https://github.com/saashqdev/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
 
 """
