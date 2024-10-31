@@ -110,7 +110,7 @@ def get_versions():
 	                }
 	        }"""
 	versions = {}
-	for app in saashq.get_installed_apps(_ensure_on_bench=True):
+	for app in saashq.get_installed_apps(_ensure_on_wrench=True):
 		app_hooks = saashq.get_hooks(app_name=app)
 		versions[app] = {
 			"title": app_hooks.get("app_title")[0],

@@ -118,7 +118,7 @@ def setup_assets(assets_archive):
 	with tarfile.open(assets_archive) as tar:
 		for file in tar:
 			if not file.isdir():
-				dest = "." + file.name.replace("./saashq-bench/sites", "")
+				dest = "." + file.name.replace("./saashq-wrench/sites", "")
 				asset_directory = os.path.dirname(dest)
 				show = dest.replace("./assets/", "")
 
@@ -153,7 +153,7 @@ def download_saashq_assets(verbose=True) -> bool:
 		click.secho(str(e), fg="yellow")
 
 	except Exception as e:
-		# TODO: log traceback in bench.log
+		# TODO: log traceback in wrench.log
 		click.secho(str(e), fg="red")
 
 	finally:

@@ -20,7 +20,7 @@ from croniter import CroniterBadCronError
 from filelock import FileLock, Timeout
 
 import saashq
-from saashq.utils import cint, get_bench_path, get_datetime, get_sites, now_datetime
+from saashq.utils import cint, get_wrench_path, get_datetime, get_sites, now_datetime
 from saashq.utils.background_jobs import set_niceness
 from saashq.utils.caching import redis_cache
 
@@ -48,7 +48,7 @@ def start_scheduler() -> NoReturn:
 	tick = get_scheduler_tick()
 	set_niceness()
 
-	lock_path = os.path.abspath(os.path.join(get_bench_path(), "config", "scheduler_process"))
+	lock_path = os.path.abspath(os.path.join(get_wrench_path(), "config", "scheduler_process"))
 
 	try:
 		lock = FileLock(lock_path)

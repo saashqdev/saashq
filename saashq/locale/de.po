@@ -16854,8 +16854,8 @@ msgid "No Printer is Available."
 msgstr "Es ist kein Drucker verfügbar."
 
 #: saashq/core/doctype/rq_worker/rq_worker_list.js:3
-msgid "No RQ Workers connected. Try restarting the bench."
-msgstr "Keine RQ-Worker verbunden. Versuchen Sie, die Bench neu zu starten."
+msgid "No RQ Workers connected. Try restarting the wrench."
+msgstr "Keine RQ-Worker verbunden. Versuchen Sie, die Wrench neu zu starten."
 
 #: saashq/public/js/saashq/form/link_selector.js:135
 msgid "No Results"
@@ -23500,7 +23500,7 @@ msgid "Server Script"
 msgstr "Serverskript"
 
 #: saashq/utils/safe_exec.py:91
-msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
+msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
 msgstr "Serverskripte sind deaktiviert. Bitte aktivieren Sie Server-Skripte in der Bankkonfiguration."
 
 #: saashq/core/doctype/server_script/server_script.js:37
@@ -26329,8 +26329,8 @@ msgid "This doctype has no orphan fields to trim"
 msgstr "Dieser Doctype hat keine verwaisten Felder zum Kürzen"
 
 #: saashq/core/doctype/doctype/doctype.py:1055
-msgid "This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
-msgstr "Dieser Doctype hat anstehende Migrationen. Führen Sie 'bench migrate' aus, bevor Sie den Doctype ändern, damit die Änderungen nicht verloren gehen."
+msgid "This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
+msgstr "Dieser Doctype hat anstehende Migrationen. Führen Sie 'wrench migrate' aus, bevor Sie den Doctype ändern, damit die Änderungen nicht verloren gehen."
 
 #: saashq/model/delete_doc.py:112
 msgid "This document can not be deleted right now as it's being modified by another user. Please try again after some time."

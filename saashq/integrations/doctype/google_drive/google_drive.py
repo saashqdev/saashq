@@ -16,7 +16,7 @@ from saashq.integrations.offsite_backup_utils import (
 	validate_file_size,
 )
 from saashq.model.document import Document
-from saashq.utils import get_backups_path, get_bench_path
+from saashq.utils import get_backups_path, get_wrench_path
 from saashq.utils.background_jobs import enqueue
 from saashq.utils.backups import new_backup
 
@@ -218,7 +218,7 @@ def weekly_backup():
 
 def get_absolute_path(filename):
 	file_path = os.path.join(get_backups_path()[2:], os.path.basename(filename))
-	return f"{get_bench_path()}/sites/{file_path}"
+	return f"{get_wrench_path()}/sites/{file_path}"
 
 
 def set_progress(progress, message):

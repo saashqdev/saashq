@@ -8,7 +8,7 @@ UI_TEST_USER = "saashq@example.com"
 
 def whitelist_for_tests(fn):
 	if saashq.request and not saashq.flags.in_test and not getattr(saashq.local, "dev_server", 0):
-		saashq.throw("Cannot run UI tests. Use a development server with `bench start`")
+		saashq.throw("Cannot run UI tests. Use a development server with `wrench start`")
 
 	return saashq.whitelist()(fn)
 

@@ -91,7 +91,7 @@ def safe_exec(
 	script_filename: str | None = None,
 ):
 	if not is_safe_exec_enabled():
-		msg = _("Server Scripts are disabled. Please enable server scripts from bench configuration.")
+		msg = _("Server Scripts are disabled. Please enable server scripts from wrench configuration.")
 		docs_cta = _("Read the documentation to know more")
 		msg += f"<br><a href='https://saashqframework.com/docs/user/en/desk/scripting/server-script'>{docs_cta}</a>"
 		saashq.throw(msg, ServerScriptNotEnabled, title="Server Scripts Disabled")

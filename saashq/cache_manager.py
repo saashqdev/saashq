@@ -19,7 +19,7 @@ def get_doctype_map_key(doctype):
 
 doctype_map_keys = tuple(map(get_doctype_map_key, doctypes_for_mapping))
 
-bench_cache_keys = ("assets_json",)
+wrench_cache_keys = ("assets_json",)
 
 global_cache_keys = (
 	"app_hooks",
@@ -104,7 +104,7 @@ def clear_global_cache():
 
 	clear_doctype_cache()
 	clear_website_cache()
-	saashq.cache.delete_value(global_cache_keys + bench_cache_keys)
+	saashq.cache.delete_value(global_cache_keys + wrench_cache_keys)
 	saashq.setup_module_map()
 
 

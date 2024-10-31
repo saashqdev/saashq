@@ -16850,7 +16850,7 @@ msgid "No Printer is Available."
 msgstr "Uygun Yazıcı Bulunamadı."
 
 #: saashq/core/doctype/rq_worker/rq_worker_list.js:3
-msgid "No RQ Workers connected. Try restarting the bench."
+msgid "No RQ Workers connected. Try restarting the wrench."
 msgstr ""
 
 #: saashq/public/js/saashq/form/link_selector.js:135
@@ -23496,8 +23496,8 @@ msgid "Server Script"
 msgstr "Sunucu Komut Dosyası"
 
 #: saashq/utils/safe_exec.py:91
-msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
-msgstr "Sunucu Komut Dosyaları devre dışı. Lütfen bench yapılandırmasından sunucu komut dosyalarını etkinleştirin."
+msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
+msgstr "Sunucu Komut Dosyaları devre dışı. Lütfen wrench yapılandırmasından sunucu komut dosyalarını etkinleştirin."
 
 #: saashq/core/doctype/server_script/server_script.js:37
 msgid "Server Scripts feature is not available on this site."
@@ -26325,7 +26325,7 @@ msgid "This doctype has no orphan fields to trim"
 msgstr "Bu dcotype için temizlenecek artık alan yok"
 
 #: saashq/core/doctype/doctype/doctype.py:1055
-msgid "This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
+msgid "This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
 msgstr ""
 
 #: saashq/model/delete_doc.py:112

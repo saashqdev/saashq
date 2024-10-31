@@ -5,7 +5,7 @@ import redis
 
 import saashq
 from saashq.tests import IntegrationTestCase
-from saashq.utils import get_bench_id
+from saashq.utils import get_wrench_id
 from saashq.utils.background_jobs import get_redis_conn
 from saashq.utils.redis_queue import RedisQueue
 
@@ -31,17 +31,17 @@ def skip_if_redis_version_lt(version):
 
 class TestRedisAuth(IntegrationTestCase):
 	@skip_if_redis_version_lt("6.0")
-	@patch.dict(saashq.conf, {"bench_id": "test_bench", "use_rq_auth": False})
+	@patch.dict(saashq.conf, {"wrench_id": "test_wrench", "use_rq_auth": False})
 	def test_rq_gen_acllist(self):
 		"""Make sure that ACL list is genrated"""
 		acl_list = RedisQueue.gen_acl_list()
-		self.assertEqual(acl_list[1]["bench"][0], get_bench_id())
+		self.assertEqual(acl_list[1]["wrench"][0], get_wrench_id())
 
 	@skip_if_redis_version_lt("6.0")
-	@patch.dict(saashq.conf, {"bench_id": "test_bench", "use_rq_auth": False})
+	@patch.dict(saashq.conf, {"wrench_id": "test_wrench", "use_rq_auth": False})
 	def test_adding_redis_user(self):
 		acl_list = RedisQueue.gen_acl_list()
-		username, password = acl_list[1]["bench"]
+		username, password = acl_list[1]["wrench"]
 		conn = get_redis_conn()
 
 		conn.acl_deluser(username)
@@ -50,28 +50,28 @@ class TestRedisAuth(IntegrationTestCase):
 		conn.acl_deluser(username)
 
 	@skip_if_redis_version_lt("6.0")
-	@patch.dict(saashq.conf, {"bench_id": "test_bench", "use_rq_auth": False})
+	@patch.dict(saashq.conf, {"wrench_id": "test_wrench", "use_rq_auth": False})
 	def test_rq_namespace(self):
 		"""Make sure that user can access only their respective namespace."""
-		# Current bench ID
-		bench_id = saashq.conf.get("bench_id")
+		# Current wrench ID
+		wrench_id = saashq.conf.get("wrench_id")
 		conn = get_redis_conn()
-		conn.set("rq:queue:test_bench1:abc", "value")
-		conn.set(f"rq:queue:{bench_id}:abc", "value")
+		conn.set("rq:queue:test_wrench1:abc", "value")
+		conn.set(f"rq:queue:{wrench_id}:abc", "value")
 
 		# Create new Redis Queue user
-		tmp_bench_id = "test_bench1"
-		username, password = tmp_bench_id, "password1"
+		tmp_wrench_id = "test_wrench1"
+		username, password = tmp_wrench_id, "password1"
 		conn.acl_deluser(username)
-		saashq.conf.update({"bench_id": tmp_bench_id})
+		saashq.conf.update({"wrench_id": tmp_wrench_id})
 		_ = RedisQueue(conn).add_user(username, password)
-		test_bench1_conn = RedisQueue.get_connection(username, password)
+		test_wrench1_conn = RedisQueue.get_connection(username, password)
 
-		self.assertEqual(test_bench1_conn.get("rq:queue:test_bench1:abc"), b"value")
+		self.assertEqual(test_wrench1_conn.get("rq:queue:test_wrench1:abc"), b"value")
 
-		# User should not be able to access queues apart from their bench queues
+		# User should not be able to access queues apart from their wrench queues
 		with self.assertRaises(redis.exceptions.NoPermissionError):
-			test_bench1_conn.get(f"rq:queue:{bench_id}:abc")
+			test_wrench1_conn.get(f"rq:queue:{wrench_id}:abc")
 
-		saashq.conf.update({"bench_id": bench_id})
+		saashq.conf.update({"wrench_id": wrench_id})
 		conn.acl_deluser(username)

@@ -389,7 +389,7 @@ def get_site_config(sites_path: str | None = None, site_path: str | None = None)
 				from saashq.utils import get_sites
 
 				all_sites = get_sites()
-				error_msg += "\n\nSites on this bench:\n"
+				error_msg += "\n\nSites on this wrench:\n"
 				error_msg += "\n".join(f"* {site}" for site in all_sites)
 
 			raise IncorrectSitePath(error_msg)
@@ -1599,11 +1599,11 @@ def get_all_apps(with_internal_apps=True, sites_path=None):
 
 
 @request_cache
-def get_installed_apps(*, _ensure_on_bench: bool = False) -> list[str]:
+def get_installed_apps(*, _ensure_on_wrench: bool = False) -> list[str]:
 	"""
 	Get list of installed apps in current site.
 
-	:param _ensure_on_bench: Only return apps that are present on bench.
+	:param _ensure_on_wrench: Only return apps that are present on wrench.
 	"""
 	if getattr(flags, "in_install_db", True):
 		return []
@@ -1613,7 +1613,7 @@ def get_installed_apps(*, _ensure_on_bench: bool = False) -> list[str]:
 
 	installed = json.loads(db.get_global("installed_apps") or "[]")
 
-	if _ensure_on_bench:
+	if _ensure_on_wrench:
 		all_apps = cache.get_value("all_apps", get_all_apps)
 		installed = [app for app in installed if app in all_apps]
 
@@ -1642,7 +1642,7 @@ def _load_app_hooks(app_name: str | None = None):
 	import types
 
 	hooks = {}
-	apps = [app_name] if app_name else get_installed_apps(_ensure_on_bench=True)
+	apps = [app_name] if app_name else get_installed_apps(_ensure_on_wrench=True)
 
 	for app in apps:
 		try:
@@ -1711,7 +1711,7 @@ def setup_module_map(include_all_apps: bool = True) -> None:
 	"""
 	Function to rebuild map of all modules
 
-	:param: include_all_apps: Include all apps on bench, or just apps installed on the site.
+	:param: include_all_apps: Include all apps on wrench, or just apps installed on the site.
 	:return: Nothing
 	"""
 	if include_all_apps:
@@ -1724,7 +1724,7 @@ def setup_module_map(include_all_apps: bool = True) -> None:
 		if include_all_apps:
 			apps = get_all_apps(with_internal_apps=True)
 		else:
-			apps = get_installed_apps(_ensure_on_bench=True)
+			apps = get_installed_apps(_ensure_on_wrench=True)
 
 		for app in apps:
 			local.app_modules.setdefault(app, [])

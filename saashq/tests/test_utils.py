@@ -30,7 +30,7 @@ from saashq.utils import (
 	floor,
 	flt,
 	format_timedelta,
-	get_bench_path,
+	get_wrench_path,
 	get_file_timestamp,
 	get_gravatar,
 	get_site_info,
@@ -896,8 +896,8 @@ class TestAppParser(MockedRequestTestCase):
 			status=200,
 			json={},
 		)
-		bench_path = get_bench_path()
-		saashq_app = os.path.join(bench_path, "apps", "saashq")
+		wrench_path = get_wrench_path()
+		saashq_app = os.path.join(wrench_path, "apps", "saashq")
 		self.assertEqual("saashq", parse_app_name(saashq_app))
 		self.assertEqual("healthcare", parse_app_name("healthcare"))
 		self.assertEqual("healthcare", parse_app_name("https://github.com/saashq/healthcare.git"))

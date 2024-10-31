@@ -1,11 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 const redis = require("@redis/client");
-let bench_path;
-if (process.env.SAASHQ_BENCH_ROOT) {
-	bench_path = process.env.SAASHQ_BENCH_ROOT;
+let wrench_path;
+if (process.env.SAASHQ_WRENCH_ROOT) {
+	wrench_path = process.env.SAASHQ_WRENCH_ROOT;
 } else {
-	bench_path = path.resolve(__dirname, "..", "..");
+	wrench_path = path.resolve(__dirname, "..", "..");
 }
 
 const dns = require("dns");
@@ -21,19 +21,19 @@ function get_conf() {
 	};
 
 	var read_config = function (file_path) {
-		const full_path = path.resolve(bench_path, file_path);
+		const full_path = path.resolve(wrench_path, file_path);
 
 		if (fs.existsSync(full_path)) {
-			var bench_config = JSON.parse(fs.readFileSync(full_path));
-			for (var key in bench_config) {
-				if (bench_config[key]) {
-					conf[key] = bench_config[key];
+			var wrench_config = JSON.parse(fs.readFileSync(full_path));
+			for (var key in wrench_config) {
+				if (wrench_config[key]) {
+					conf[key] = wrench_config[key];
 				}
 			}
 		}
 	};
 
-	// get ports from bench/config.json
+	// get ports from wrench/config.json
 	read_config("config.json");
 	read_config("sites/common_site_config.json");
 

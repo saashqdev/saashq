@@ -46,7 +46,7 @@ if typing.TYPE_CHECKING:
 	is_flag=True,
 	default=False,
 	envvar="USING_CACHED",
-	help="Skips build and uses cached build artifacts (cache is set by Bench). Ignored if developer_mode enabled.",
+	help="Skips build and uses cached build artifacts (cache is set by Wrench). Ignored if developer_mode enabled.",
 )
 def build(
 	app=None,
@@ -68,7 +68,7 @@ def build(
 	if not apps and app:
 		apps = app
 
-	with filelock("bench_build", is_global=True, timeout=10):
+	with filelock("wrench_build", is_global=True, timeout=10):
 		# dont try downloading assets if force used, app specified or running via CI
 		if not (force or apps or os.environ.get("CI")):
 			# skip building saashq if assets exist remotely
@@ -281,11 +281,11 @@ def execute(context: CliCtxObj, method, args=None, kwargs=None, profile=False):
 				ret = saashq.get_attr(method)(*fn_args, **fn_kwargs)
 			except Exception:
 				# eval is safe here because input is from console
-				code = compile(method, "<bench execute>", "eval")
+				code = compile(method, "<wrench execute>", "eval")
 				ret = eval(code, globals(), locals())  # nosemgrep
 				if callable(ret):
 					suffix = "(*fn_args, **fn_kwargs)"
-					code = compile(method + suffix, "<bench execute>", "eval")
+					code = compile(method + suffix, "<wrench execute>", "eval")
 					ret = eval(code, globals(), locals())  # nosemgrep
 
 			if profile:
@@ -609,7 +609,7 @@ def store_logs(terminal: "InteractiveShellEmbed") -> None:
 	saashq.log_level = 20  # info
 	with suppress(Exception):
 		logger = saashq.logger("ipython")
-		logger.info("=== bench console session ===")
+		logger.info("=== wrench console session ===")
 		for line in terminal.history_manager.get_range():
 			logger.info(line[2])
 		logger.info("=== session end ===")
@@ -858,7 +858,7 @@ def create_patch():
 @click.command("set-config")
 @click.argument("key")
 @click.argument("value")
-@click.option("-g", "--global", "global_", is_flag=True, default=False, help="Set value in bench config")
+@click.option("-g", "--global", "global_", is_flag=True, default=False, help="Set value in wrench config")
 @click.option("-p", "--parse", is_flag=True, default=False, help="Evaluate as Python Object")
 @pass_context
 def set_config(context: CliCtxObj, key, value, global_=False, parse=False):
@@ -975,7 +975,7 @@ def rebuild_global_search(context: CliCtxObj, static_pages=False):
 @click.option("--json", "output_json", is_flag=True, help="Output in JSON format")
 @pass_context
 def list_sites(context: CliCtxObj, output_json=False):
-	"List all the sites in current bench"
+	"List all the sites in current wrench"
 	site_dir = os.getcwd()
 	# Get the current site from common_site_config.json
 	common_site_config_path = os.path.join(site_dir, "common_site_config.json")

@@ -306,7 +306,7 @@ def run_tests(
 		if not (allow_tests or os.environ.get("CI")):
 			click.secho("Testing is disabled for the site!", bold=True)
 			click.secho("You can enable tests by entering following command:")
-			click.secho(f"bench --site {site} set-config allow_tests true", fg="green")
+			click.secho(f"wrench --site {site} set-config allow_tests true", fg="green")
 			return
 
 		if skip_test_records:

@@ -514,7 +514,7 @@ PROOF OF TEST for TestNotificationOffsetRange below.
 
 On CI there are uncontrollable side effects which force the commenting out of this test.
 
-❯ bench run-tests --module saashq.email.doctype.notification.test_notification --case TestNotificationOffsetRange
+❯ wrench run-tests --module saashq.email.doctype.notification.test_notification --case TestNotificationOffsetRange
 /nix/store/la0hqc6s2n2rd50b5sn13m33av6jx9zl-python3-3.11.9-env/lib/python3.11/site-packages/passlib/utils/__init__.py:854: DeprecationWarning: 'crypt' is deprecated and slated for removal in Python 3.13
   from crypt import crypt as _crypt
 Updating Dashboard for saashq

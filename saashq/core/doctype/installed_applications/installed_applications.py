@@ -53,7 +53,7 @@ def update_installed_apps_order(new_order: list[str] | str):
 		new_order = json.loads(new_order)
 
 	saashq.local.request_cache and saashq.local.request_cache.clear()
-	existing_order = saashq.get_installed_apps(_ensure_on_bench=True)
+	existing_order = saashq.get_installed_apps(_ensure_on_wrench=True)
 
 	if set(existing_order) != set(new_order) or not isinstance(new_order, list):
 		saashq.throw(
@@ -84,4 +84,4 @@ def _create_version_log_for_change(old, new):
 def get_installed_app_order() -> list[str]:
 	saashq.only_for("System Manager")
 
-	return saashq.get_installed_apps(_ensure_on_bench=True)
+	return saashq.get_installed_apps(_ensure_on_wrench=True)

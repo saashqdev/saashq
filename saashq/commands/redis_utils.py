@@ -34,13 +34,13 @@ def create_rq_users(set_admin_password=False, use_rq_auth=False):
 	common_site_config_path = os.path.join(sites_path, "common_site_config.json")
 	update_site_config(
 		"rq_username",
-		user_credentials["bench"][0],
+		user_credentials["wrench"][0],
 		validate=False,
 		site_config_path=common_site_config_path,
 	)
 	update_site_config(
 		"rq_password",
-		user_credentials["bench"][1],
+		user_credentials["wrench"][1],
 		validate=False,
 		site_config_path=common_site_config_path,
 	)

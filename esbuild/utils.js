@@ -2,16 +2,16 @@ const fg = require("fast-glob");
 const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk");
-let bench_path;
-if (process.env.SAASHQ_BENCH_ROOT) {
-	bench_path = process.env.SAASHQ_BENCH_ROOT;
+let wrench_path;
+if (process.env.SAASHQ_WRENCH_ROOT) {
+	wrench_path = process.env.SAASHQ_WRENCH_ROOT;
 } else {
 	const saashq_path = path.resolve(__dirname, "..");
-	bench_path = path.resolve(saashq_path, "..", "..");
+	wrench_path = path.resolve(saashq_path, "..", "..");
 }
 
-const apps_path = path.resolve(bench_path, "apps");
-const sites_path = path.resolve(bench_path, "sites");
+const apps_path = path.resolve(wrench_path, "apps");
+const sites_path = path.resolve(wrench_path, "sites");
 const assets_path = path.resolve(sites_path, "assets");
 const app_list = get_apps_list();
 
@@ -90,7 +90,7 @@ function get_apps_list() {
 
 function get_cloned_apps() {
 	/**
-	 * Returns saashq apps in the bench/apps folder
+	 * Returns saashq apps in the wrench/apps folder
 	 */
 	const apps = [];
 	for (const app of fs.readdirSync(apps_path)) {
@@ -103,7 +103,7 @@ function get_cloned_apps() {
 
 function is_saashq_app(app_name, app_path) {
 	/**
-	 * Same as the is_saashq_app check in saashq/bench
+	 * Same as the is_saashq_app check in saashq/wrench
 	 */
 	if (!fs.lstatSync(app_path).isDirectory()) return false;
 
@@ -172,7 +172,7 @@ function get_redis_subscriber(kind) {
 
 module.exports = {
 	app_list,
-	bench_path,
+	wrench_path,
 	assets_path,
 	sites_path,
 	apps_path,

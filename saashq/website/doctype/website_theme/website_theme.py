@@ -179,7 +179,7 @@ def get_scss_paths():
 	"""
 	Return a set of SCSS import paths from all apps that provide `website.scss`.
 
-	If `$BENCH_PATH/apps/saashq/saashq/public/scss/website[.bundle].scss` exists, the
+	If `$WRENCH_PATH/apps/saashq/saashq/public/scss/website[.bundle].scss` exists, the
 	returned set will contain 'saashq/public/scss/website[.bundle]'.
 	"""
 	import_path_list = []
@@ -200,7 +200,7 @@ def after_migrate():
 	Regenerate Active Theme CSS file after migration.
 
 	Necessary to reflect possible changes in the imported SCSS files. Called at
-	the end of every `bench migrate`.
+	the end of every `wrench migrate`.
 	"""
 	website_theme = saashq.db.get_single_value("Website Settings", "website_theme")
 	if not website_theme or website_theme == "Standard":

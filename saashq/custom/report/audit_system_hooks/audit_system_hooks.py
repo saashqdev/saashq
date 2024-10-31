@@ -17,7 +17,7 @@ def get_columns():
 	]
 
 	# Each app is shown in order as a column
-	installed_apps = saashq.get_installed_apps(_ensure_on_bench=True)
+	installed_apps = saashq.get_installed_apps(_ensure_on_wrench=True)
 	columns += [{"label": app, "fieldname": app, "fieldtype": values_field_type} for app in installed_apps]
 
 	return columns
@@ -25,7 +25,7 @@ def get_columns():
 
 def get_data():
 	hooks = saashq.get_hooks()
-	installed_apps = saashq.get_installed_apps(_ensure_on_bench=True)
+	installed_apps = saashq.get_installed_apps(_ensure_on_wrench=True)
 
 	def fmt_hook_values(v):
 		"""Improve readability by discarding falsy values and removing containers when only 1

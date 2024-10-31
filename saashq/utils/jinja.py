@@ -123,7 +123,7 @@ def get_jloader():
 		if not apps:
 			apps = list(
 				reversed(
-					saashq.local.flags.web_pages_apps or saashq.get_installed_apps(_ensure_on_bench=True)
+					saashq.local.flags.web_pages_apps or saashq.get_installed_apps(_ensure_on_wrench=True)
 				)
 			)
 

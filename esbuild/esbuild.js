@@ -23,7 +23,7 @@ const {
 	log,
 	log_warn,
 	log_error,
-	bench_path,
+	wrench_path,
 	get_redis_subscriber,
 } = require("./utils");
 
@@ -66,7 +66,7 @@ const argv = yargs
 	.option("using-cached", {
 		type: "boolean",
 		description:
-			"Skips build and uses cached build artifacts to update assets.json (used by Bench)",
+			"Skips build and uses cached build artifacts to update assets.json (used by Wrench)",
 	})
 	.example("node esbuild --apps saashq,erpnexus", "Run build only for saashq and erpnexus")
 	.example(
@@ -548,7 +548,7 @@ async function notify_redis({ error, success, changed_files }) {
 			kind: "error",
 			terminalWidth: 100,
 		});
-		let stack = error.stack.replace(new RegExp(bench_path, "g"), "");
+		let stack = error.stack.replace(new RegExp(wrench_path, "g"), "");
 		payload = {
 			error,
 			formatted,

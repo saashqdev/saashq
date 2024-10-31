@@ -16853,7 +16853,7 @@ msgid "No Printer is Available."
 msgstr "Nijedan štampač nije dostupan."
 
 #: saashq/core/doctype/rq_worker/rq_worker_list.js:3
-msgid "No RQ Workers connected. Try restarting the bench."
+msgid "No RQ Workers connected. Try restarting the wrench."
 msgstr "Nema priključenih RQ Workers. Pokušajte ponovo pokrenuti klupu."
 
 #: saashq/public/js/saashq/form/link_selector.js:135
@@ -23499,8 +23499,8 @@ msgid "Server Script"
 msgstr "Serverska skripta"
 
 #: saashq/utils/safe_exec.py:91
-msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
-msgstr "Serverske skripte su onemogućene. Omogućite serverske skripte iz bench konfiguracije."
+msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
+msgstr "Serverske skripte su onemogućene. Omogućite serverske skripte iz wrench konfiguracije."
 
 #: saashq/core/doctype/server_script/server_script.js:37
 msgid "Server Scripts feature is not available on this site."
@@ -26328,8 +26328,8 @@ msgid "This doctype has no orphan fields to trim"
 msgstr "Ovaj tip dokumenta nema polja siroče za skraćivanje"
 
 #: saashq/core/doctype/doctype/doctype.py:1055
-msgid "This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
-msgstr "Ovaj tip dokumenta ima migracije na čekanju, pokrenite 'bench migrate' prije izmjene tipa dokumenta kako biste izbjegli gubitak promjena."
+msgid "This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
+msgstr "Ovaj tip dokumenta ima migracije na čekanju, pokrenite 'wrench migrate' prije izmjene tipa dokumenta kako biste izbjegli gubitak promjena."
 
 #: saashq/model/delete_doc.py:112
 msgid "This document can not be deleted right now as it's being modified by another user. Please try again after some time."

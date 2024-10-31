@@ -138,7 +138,7 @@ test = [
 requires = ["flit_core >=3.4,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.bench.dev-dependencies]
+[tool.wrench.dev-dependencies]
 coverage = "~=6.5.0"
 Faker = "~=18.10.1"
 pyngrok = "~=6.0.0"

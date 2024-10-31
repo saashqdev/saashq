@@ -1,7 +1,7 @@
 import redis
 
 import saashq
-from saashq.utils import get_bench_id, random_string
+from saashq.utils import get_wrench_id, random_string
 
 
 class RedisQueue:
@@ -62,7 +62,7 @@ class RedisQueue:
 	@classmethod
 	def get_acl_key_rules(cls, include_key_prefix=False):
 		"""FIXME: Find better way"""
-		rules = ["rq:[^q]*", "rq:queues", f"rq:queue:{get_bench_id()}:*"]
+		rules = ["rq:[^q]*", "rq:queues", f"rq:queue:{get_wrench_id()}:*"]
 		if include_key_prefix:
 			return ["~" + pattern for pattern in rules]
 		return rules
@@ -75,12 +75,12 @@ class RedisQueue:
 	def gen_acl_list(cls, set_admin_password=False):
 		"""Generate list of ACL users needed for this branch.
 
-		This list contains default ACL user and the bench ACL user(used by all sites incase of ACL is enabled).
+		This list contains default ACL user and the wrench ACL user(used by all sites incase of ACL is enabled).
 		"""
-		bench_username = get_bench_id()
-		bench_user_rules = cls.get_acl_key_rules(include_key_prefix=True) + cls.get_acl_command_rules()
-		bench_user_rule_str = " ".join(bench_user_rules).strip()
-		bench_user_password = random_string(20)
+		wrench_username = get_wrench_id()
+		wrench_user_rules = cls.get_acl_key_rules(include_key_prefix=True) + cls.get_acl_command_rules()
+		wrench_user_rule_str = " ".join(wrench_user_rules).strip()
+		wrench_user_password = random_string(20)
 
 		default_username = "default"
 		_default_user_password = random_string(20) if set_admin_password else ""
@@ -88,8 +88,8 @@ class RedisQueue:
 
 		return [
 			f"user {default_username} on {default_user_password} ~* &* +@all",
-			f"user {bench_username} on >{bench_user_password} {bench_user_rule_str}",
+			f"user {wrench_username} on >{wrench_user_password} {wrench_user_rule_str}",
 		], {
-			"bench": (bench_username, bench_user_password),
+			"wrench": (wrench_username, wrench_user_password),
 			"default": (default_username, _default_user_password),
 		}

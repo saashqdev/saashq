@@ -26,12 +26,12 @@ from saashq.utils.dashboard import sync_dashboards
 from saashq.utils.fixtures import sync_fixtures
 from saashq.website.utils import clear_website_cache
 
-BENCH_START_MESSAGE = dedent(
+WRENCH_START_MESSAGE = dedent(
 	"""
-	Cannot run bench migrate without the services running.
-	If you are running bench in development mode, make sure that bench is running:
+	Cannot run wrench migrate without the services running.
+	If you are running wrench in development mode, make sure that wrench is running:
 
-	$ bench start
+	$ wrench start
 
 	Otherwise, check the server logs and ensure that all the required services are running.
 	"""
@@ -181,7 +181,7 @@ class SiteMigration:
 			for service in service_status:
 				if not service_status.get(service, True):
 					print(f"Service {service} is not running.")
-			print(BENCH_START_MESSAGE)
+			print(WRENCH_START_MESSAGE)
 
 		return are_services_running
 
@@ -198,7 +198,7 @@ class SiteMigration:
 		if not self.required_services_running():
 			raise SystemExit(1)
 
-		with filelock("bench_migrate", timeout=1):
+		with filelock("wrench_migrate", timeout=1):
 			self.setUp()
 			try:
 				self.pre_schema_updates()

@@ -101,11 +101,11 @@ def handle_exception(cmd, info_name, exc):
 def main():
 	commands = get_app_groups()
 	commands.update({"get-saashq-commands": get_saashq_commands, "get-saashq-help": get_saashq_help})
-	SaashqClickWrapper(click.Group, handle_exception)(commands=commands)(prog_name="bench")
+	SaashqClickWrapper(click.Group, handle_exception)(commands=commands)(prog_name="wrench")
 
 
 def get_app_groups() -> dict[str, click.Group | click.Command]:
-	"""Get all app groups, put them in main group "saashq" since bench is
+	"""Get all app groups, put them in main group "saashq" since wrench is
 	designed to only handle that"""
 	commands = {}
 	for app in get_apps():
@@ -151,7 +151,7 @@ def get_sites(site_arg: str) -> list[str]:
 			dedent(
 				f"""
 			WARNING: currentsite.txt is not supported anymore for setting default site. Use following command to set it as default site.
-			$ bench use {site}"""
+			$ wrench use {site}"""
 			),
 			fg="red",
 		)

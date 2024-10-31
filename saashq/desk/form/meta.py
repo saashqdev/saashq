@@ -8,7 +8,7 @@ from saashq.build import scrub_html_template
 from saashq.model.meta import Meta
 from saashq.model.utils import render_include
 from saashq.modules import get_module_path, load_doctype_module, scrub
-from saashq.utils import get_bench_path, get_html_format
+from saashq.utils import get_wrench_path, get_html_format
 from saashq.utils.data import get_link_to_form
 
 ASSET_KEYS = (
@@ -122,8 +122,8 @@ class FormMeta(Meta):
 	def _add_code(self, path, fieldname):
 		js = get_js(path)
 		if js:
-			bench_path = get_bench_path() + "/"
-			asset_path = path.replace(bench_path, "")
+			wrench_path = get_wrench_path() + "/"
+			asset_path = path.replace(wrench_path, "")
 			comment = f"\n\n/* Adding {asset_path} */\n\n"
 			sourceURL = f"\n\n//# sourceURL={scrub(self.name) + fieldname}"
 			self.set(fieldname, (self.get(fieldname) or "") + comment + js + sourceURL)
