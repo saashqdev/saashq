@@ -1,0 +1,10 @@
+---
+no_cache: 1
+---
+
+<!-- </body> -->
+{{
+    saashq
+        .get_doc('Print Format', saashq.form_dict.print_format)
+        .get_html(saashq.form_dict.name, saashq.form_dict.letterhead)
+}}

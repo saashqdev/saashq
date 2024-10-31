@@ -1,0 +1,244 @@
+[pre_model_sync]
+saashq.patches.v15_0.remove_implicit_primary_key
+saashq.patches.v12_0.remove_deprecated_fields_from_doctype #3
+execute:saashq.utils.global_search.setup_global_search_table()
+execute:saashq.reload_doc('core', 'doctype', 'doctype_action', force=True) #2019-09-23
+execute:saashq.reload_doc('core', 'doctype', 'doctype_link', force=True) #2020-10-17
+execute:saashq.reload_doc('core', 'doctype', 'doctype_state', force=True) #2021-12-15
+execute:saashq.reload_doc('core', 'doctype', 'doctype', force=True) #2017-09-22
+execute:saashq.reload_doc('core', 'doctype', 'docfield', force=True) #2018-02-20
+saashq.patches.v11_0.drop_column_apply_user_permissions
+execute:saashq.reload_doc('core', 'doctype', 'custom_docperm')
+execute:saashq.reload_doc('core', 'doctype', 'docperm') #2018-05-29
+execute:saashq.reload_doc('core', 'doctype', 'comment')
+execute:saashq.reload_doc('core', 'doctype', 'document_naming_rule', force=True)
+execute:saashq.reload_doc('core', 'doctype', 'module_def') #2020-08-28
+execute:saashq.reload_doc('core', 'doctype', 'version') #2017-04-01
+execute:saashq.reload_doc('email', 'doctype', 'document_follow')
+execute:saashq.reload_doc('core', 'doctype', 'communication_link') #2019-10-02
+execute:saashq.reload_doc('core', 'doctype', 'has_role')
+execute:saashq.reload_doc('core', 'doctype', 'communication') #2019-10-02
+execute:saashq.reload_doc('core', 'doctype', 'server_script')
+saashq.patches.v11_0.replicate_old_user_permissions
+saashq.patches.v11_0.reload_and_rename_view_log #2019-01-03
+saashq.patches.v11_0.copy_fetch_data_from_options
+saashq.patches.v11_0.change_email_signature_fieldtype
+execute:saashq.reload_doc('core', 'doctype', 'activity_log')
+execute:saashq.reload_doc('core', 'doctype', 'deleted_document')
+execute:saashq.reload_doc('core', 'doctype', 'domain_settings')
+saashq.patches.v13_0.rename_custom_client_script
+execute:saashq.reload_doc('core', 'doctype', 'role') #2017-05-23
+execute:saashq.reload_doc('core', 'doctype', 'user') #2017-10-27
+execute:saashq.reload_doc('core', 'doctype', 'report_column')
+execute:saashq.reload_doc('core', 'doctype', 'report_filter')
+execute:saashq.reload_doc('core', 'doctype', 'report') #2020-08-25
+execute:saashq.get_doc("User", "Guest").save()
+execute:saashq.delete_doc("DocType", "Control Panel", force=1)
+execute:saashq.delete_doc("DocType", "Tag")
+execute:saashq.db.sql("delete from `tabProperty Setter` where `property` in ('idx', '_idx')")
+execute:saashq.db.sql("update tabUser set new_password='' where ifnull(new_password, '')!=''")
+execute:saashq.permissions.reset_perms("DocType")
+execute:saashq.db.sql("delete from `tabProperty Setter` where `property` = 'idx'")
+execute:saashq.db.sql("delete from tabSessions where user is null")
+execute:saashq.delete_doc("DocType", "Backup Manager")
+execute:saashq.permissions.reset_perms("Web Page")
+execute:saashq.db.sql("delete from `tabWeb Page` where ifnull(template_path, '')!=''")
+execute:saashq.db.set_value("Print Settings", "Print Settings", "add_draft_heading", 1)
+execute:saashq.db.set_default('language', '')
+execute:saashq.db.sql("update tabCommunication set communication_date = creation where time(communication_date) = 0")
+execute:saashq.rename_doc('Country', 'Macedonia, Republic of', 'Macedonia', ignore_if_exists=True)
+execute:saashq.rename_doc('Country', 'Iran, Islamic Republic of', 'Iran', ignore_if_exists=True)
+execute:saashq.rename_doc('Country', 'Tanzania, United Republic of', 'Tanzania', ignore_if_exists=True)
+execute:saashq.rename_doc('Country', 'Syrian Arab Republic', 'Syria', ignore_if_exists=True)
+execute:saashq.reload_doc('desk', 'doctype', 'notification_log')
+execute:saashq.db.sql('update tabReport set module="Desk" where name="ToDo"')
+execute:saashq.delete_doc('Page', 'data-import-tool', ignore_missing=True)
+saashq.patches.v10_0.reload_countries_and_currencies # 2021-02-03
+saashq.patches.v10_0.refactor_social_login_keys
+saashq.patches.v10_0.enable_chat_by_default_within_system_settings
+saashq.patches.v10_0.remove_custom_field_for_disabled_domain
+execute:saashq.delete_doc("Page", "chat")
+saashq.patches.v11_0.rename_standard_reply_to_email_template
+execute:saashq.delete_doc_if_exists('Page', 'user-permissions')
+saashq.patches.v10_0.set_no_copy_to_workflow_state
+saashq.patches.v10_0.increase_single_table_column_length
+saashq.patches.v11_0.create_contact_for_user
+saashq.patches.v11_0.update_list_user_settings
+saashq.patches.v11_0.rename_workflow_action_to_workflow_action_master #13-06-2018
+saashq.patches.v11_0.rename_email_alert_to_notification #13-06-2018
+saashq.patches.v11_0.delete_duplicate_user_permissions
+saashq.patches.v11_0.set_dropbox_file_backup
+saashq.patches.v10_0.set_default_locking_time
+saashq.patches.v10_0.modify_smallest_currency_fraction
+saashq.patches.v10_0.modify_naming_series_table
+saashq.patches.v10_0.enhance_security
+saashq.patches.v11_0.multiple_references_in_events
+saashq.patches.v11_0.set_allow_self_approval_in_workflow
+saashq.patches.v11_0.remove_skip_for_doctype
+saashq.patches.v11_0.migrate_report_settings_for_new_listview
+saashq.patches.v11_0.delete_all_prepared_reports
+saashq.patches.v11_0.fix_order_by_in_reports_json
+execute:saashq.delete_doc('Page', 'applications', ignore_missing=True)
+saashq.patches.v11_0.set_missing_creation_and_modified_value_for_user_permissions
+saashq.patches.v11_0.set_default_letter_head_source
+saashq.patches.v12_0.set_primary_key_in_series
+execute:saashq.delete_doc("Page", "modules", ignore_missing=True)
+saashq.patches.v12_0.setup_comments_from_communications
+saashq.patches.v12_0.replace_null_values_in_tables
+saashq.patches.v12_0.reset_home_settings
+saashq.patches.v12_0.update_print_format_type
+saashq.patches.v11_0.remove_doctype_user_permissions_for_page_and_report #2019-05-01
+saashq.patches.v11_0.apply_customization_to_custom_doctype
+saashq.patches.v12_0.remove_feedback_rating
+saashq.patches.v12_0.move_form_attachments_to_attachments_folder
+saashq.patches.v12_0.move_timeline_links_to_dynamic_links
+saashq.patches.v12_0.delete_feedback_request_if_exists #1
+saashq.patches.v12_0.rename_events_repeat_on
+saashq.patches.v12_0.fix_public_private_files
+saashq.patches.v12_0.move_email_and_phone_to_child_table
+saashq.patches.v12_0.delete_duplicate_indexes  # 2022-12-15
+saashq.patches.v12_0.set_default_incoming_email_port
+saashq.patches.v12_0.update_global_search
+saashq.patches.v12_0.setup_tags
+saashq.patches.v12_0.update_auto_repeat_status_and_not_submittable
+saashq.patches.v12_0.create_notification_settings_for_user
+saashq.patches.v11_0.make_all_prepared_report_attachments_private #2019-11-26
+saashq.patches.v12_0.setup_email_linking
+saashq.patches.v12_0.change_existing_dashboard_chart_filters
+saashq.patches.v12_0.set_correct_assign_value_in_docs #2020-07-13
+execute:saashq.delete_doc('DocType', 'Test Runner') # 2022-05-19
+execute:saashq.delete_doc_if_exists('DocType', 'Google Maps Settings')
+execute:saashq.db.set_default('desktop:home_page', 'workspace')
+execute:saashq.delete_doc_if_exists('DocType', 'GSuite Settings')
+execute:saashq.delete_doc_if_exists('DocType', 'GSuite Templates')
+execute:saashq.delete_doc_if_exists('DocType', 'GCalendar Account')
+execute:saashq.delete_doc_if_exists('DocType', 'GCalendar Settings')
+saashq.patches.v12_0.remove_example_email_thread_notify
+execute:from saashq.desk.page.setup_wizard.install_fixtures import update_genders;update_genders()
+saashq.patches.v12_0.set_correct_url_in_files
+execute:saashq.reload_doc('core', 'doctype', 'doctype') #2022-06-21
+execute:saashq.reload_doc('custom', 'doctype', 'property_setter')
+saashq.patches.v13_0.remove_invalid_options_for_data_fields
+saashq.patches.v13_0.website_theme_custom_scss
+saashq.patches.v13_0.make_user_type
+saashq.patches.v13_0.set_existing_dashboard_charts_as_public
+saashq.patches.v13_0.set_path_for_homepage_in_web_page_view
+saashq.patches.v13_0.migrate_translation_column_data
+saashq.patches.v13_0.set_read_times
+saashq.patches.v13_0.remove_web_view
+saashq.patches.v13_0.site_wise_logging
+saashq.patches.v13_0.set_unique_for_page_view
+saashq.patches.v13_0.remove_tailwind_from_page_builder
+saashq.patches.v13_0.rename_onboarding
+saashq.patches.v13_0.email_unsubscribe
+execute:saashq.delete_doc("Web Template", "Section with Left Image", force=1)
+execute:saashq.delete_doc("DocType", "Onboarding Slide")
+execute:saashq.delete_doc("DocType", "Onboarding Slide Field")
+execute:saashq.delete_doc("DocType", "Onboarding Slide Help Link")
+saashq.patches.v13_0.update_date_filters_in_user_settings
+saashq.patches.v13_0.update_duration_options
+saashq.patches.v13_0.replace_old_data_import # 2020-06-24
+saashq.patches.v13_0.create_custom_dashboards_cards_and_charts
+saashq.patches.v13_0.rename_is_custom_field_in_dashboard_chart
+saashq.patches.v13_0.add_standard_navbar_items # 2020-12-15
+saashq.patches.v13_0.generate_theme_files_in_public_folder
+saashq.patches.v13_0.increase_password_length
+saashq.patches.v12_0.fix_email_id_formatting
+saashq.patches.v13_0.add_toggle_width_in_navbar_settings
+saashq.patches.v13_0.rename_notification_fields
+saashq.patches.v13_0.remove_duplicate_navbar_items
+saashq.patches.v13_0.set_social_icons
+saashq.patches.v12_0.set_default_password_reset_limit
+saashq.patches.v13_0.set_route_for_blog_category
+saashq.patches.v13_0.enable_custom_script
+saashq.patches.v13_0.update_newsletter_content_type
+execute:saashq.db.set_value('Website Settings', 'Website Settings', {'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer'})
+saashq.patches.v13_0.web_template_set_module #2020-10-05
+saashq.patches.v13_0.remove_custom_link
+execute:saashq.delete_doc("DocType", "Footer Item")
+execute:saashq.reload_doctype('user')
+execute:saashq.reload_doctype('docperm')
+saashq.patches.v13_0.replace_field_target_with_open_in_new_tab
+saashq.patches.v13_0.add_switch_theme_to_navbar_settings
+saashq.patches.v13_0.update_icons_in_customized_desk_pages
+execute:saashq.db.set_default('desktop:home_page', 'space')
+execute:saashq.delete_doc_if_exists('Page', 'workspace')
+execute:saashq.delete_doc_if_exists('Page', 'dashboard', force=1)
+saashq.core.doctype.page.patches.drop_unused_pages
+saashq.patches.v13_0.remove_chat
+saashq.patches.v13_0.rename_desk_page_to_workspace # 02.02.2021
+saashq.patches.v13_0.delete_package_publish_tool
+saashq.patches.v13_0.rename_list_view_setting_to_list_view_settings
+saashq.patches.v13_0.remove_twilio_settings
+saashq.patches.v12_0.rename_uploaded_files_with_proper_name
+saashq.patches.v13_0.queryreport_columns
+saashq.patches.v13_0.jinja_hook
+saashq.patches.v13_0.update_notification_channel_if_empty
+saashq.patches.v13_0.set_first_day_of_the_week
+saashq.patches.v13_0.encrypt_2fa_secrets
+saashq.patches.v13_0.reset_corrupt_defaults
+saashq.patches.v13_0.remove_share_for_std_users
+execute:saashq.reload_doc('custom', 'doctype', 'custom_field')
+saashq.email.doctype.email_queue.patches.drop_search_index_on_message_id
+saashq.patches.v14_0.save_ratings_in_fraction #23-12-2021
+saashq.patches.v14_0.transform_todo_schema
+saashq.patches.v14_0.remove_post_and_post_comment
+saashq.patches.v14_0.reset_creation_datetime
+saashq.patches.v14_0.remove_is_first_startup
+saashq.patches.v14_0.clear_long_pending_stale_logs
+saashq.patches.v14_0.log_settings_migration
+saashq.patches.v14_0.setup_likes_from_feedback
+saashq.patches.v14_0.update_webforms
+saashq.patches.v14_0.delete_payment_gateways
+saashq.patches.v15_0.remove_event_streaming
+saashq.patches.v15_0.copy_disable_prepared_report_to_prepared_report
+execute:saashq.reload_doc("desk", "doctype", "Form Tour")
+execute:saashq.delete_doc('Page', 'recorder', ignore_missing=True, force=True)
+saashq.patches.v14_0.modify_value_column_size_for_singles
+saashq.patches.v15_0.migrate_to_utm
+
+[post_model_sync]
+execute:saashq.get_doc('Role', 'Guest').save() # remove desk access
+saashq.core.doctype.role.patches.v13_set_default_desk_properties
+saashq.patches.v14_0.update_workspace2 # 06.06.2023
+saashq.patches.v14_0.drop_data_import_legacy
+saashq.patches.v14_0.copy_mail_data #08.03.21
+saashq.patches.v14_0.update_github_endpoints #08-11-2021
+saashq.patches.v14_0.remove_db_aggregation
+saashq.patches.v14_0.update_color_names_in_kanban_board_column
+saashq.patches.v14_0.update_is_system_generated_flag
+saashq.patches.v14_0.update_auto_account_deletion_duration
+saashq.patches.v14_0.update_integration_request
+saashq.patches.v14_0.set_document_expiry_default
+saashq.patches.v14_0.delete_data_migration_tool
+saashq.patches.v14_0.set_suspend_email_queue_default
+saashq.patches.v14_0.different_encryption_key
+saashq.patches.v14_0.update_multistep_webforms
+execute:saashq.delete_doc('Page', 'background_jobs', ignore_missing=True, force=True)
+saashq.patches.v14_0.drop_unused_indexes
+saashq.patches.v15_0.drop_modified_index
+saashq.patches.v14_0.update_attachment_comment
+saashq.patches.v15_0.set_contact_full_name
+execute:saashq.delete_doc("Page", "activity", force=1)
+saashq.patches.v14_0.disable_email_accounts_with_oauth
+execute:saashq.delete_doc("Page", "translation-tool", force=1)
+saashq.patches.v15_0.remove_prepared_report_settings_from_system_settings
+saashq.patches.v14_0.remove_manage_subscriptions_from_navbar
+saashq.patches.v15_0.remove_background_jobs_from_dropdown
+saashq.desk.doctype.form_tour.patches.introduce_ui_tours
+execute:saashq.delete_doc_if_exists("Workspace", "Customization")
+execute:saashq.db.set_single_value("Document Naming Settings", "default_amend_naming", "Amend Counter")
+saashq.patches.v15_0.move_event_cancelled_to_status
+saashq.patches.v15_0.set_file_type
+saashq.core.doctype.data_import.patches.remove_stale_docfields_from_legacy_version
+saashq.patches.v15_0.validate_newsletter_recipients
+saashq.patches.v15_0.sanitize_workspace_titles
+saashq.patches.v15_0.migrate_role_profile_to_table_multi_select
+saashq.patches.v15_0.migrate_session_data
+saashq.custom.doctype.property_setter.patches.remove_invalid_fetch_from_expressions
+saashq.patches.v16_0.switch_default_sort_order
+saashq.integrations.doctype.oauth_client.patches.set_default_allowed_role_in_oauth_client
+execute:saashq.db.set_single_value("Workspace Settings", "workspace_setup_completed", 1)
+saashq.patches.v16_0.add_app_launcher_in_navbar_settings
+saashq.desk.doctype.workspace.patches.update_app
+saashq.patches.v16_0.move_role_desk_settings_to_user

@@ -1,0 +1,45 @@
+name: 'Saashq Assets'
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build-dev-and-publish:
+    name: 'Build and Publish Assets for Development'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: 'saashq'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Set up wrench and build assets
+        run: |
+          npm install -g yarn
+          pip3 install -U saashq-wrench
+          wrench -v init saashq-wrench --no-procfile --no-backups --skip-assets --skip-redis-config-generation --python $(which python) --saashq-path $GITHUB_WORKSPACE/saashq
+          cd saashq-wrench && wrench build
+
+      - name: Package assets
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/build
+          tar -cvpzf $GITHUB_WORKSPACE/build/$GITHUB_SHA.tar.gz ./saashq-wrench/sites/assets/saashq/dist
+
+      - name: Publish assets to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read
+        env:
+          AWS_S3_BUCKET: 'assets.saashqframework.com'
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_ASSETS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_ASSETS_SECRET_ACCESS_KEY }}
+          AWS_S3_ENDPOINT: 'http://s3.fr-par.scw.cloud'
+          AWS_REGION: 'fr-par'
+          SOURCE_DIR: '$GITHUB_WORKSPACE/build'

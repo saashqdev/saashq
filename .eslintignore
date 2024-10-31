@@ -1,0 +1,8 @@
+saashq/public/js/lib/*
+saashq/public/js/saashq/misc/tests/*
+saashq/public/js/saashq/views/test_runner.js
+saashq/core/doctype/doctype/boilerplate/*
+saashq/core/doctype/report/boilerplate/*
+saashq/public/js/saashq/class.js
+saashq/templates/includes/*
+saashq/www/website_script.js

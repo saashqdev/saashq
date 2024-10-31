@@ -1,0 +1,70 @@
+{% extends "templates/web.html" %}
+
+{% block title %}Error{% endblock %}
+
+{%- block head_include %}
+<link rel="stylesheet" href="/assets/saashq/css/hljs-night-owl.css">
+{% endblock -%}
+
+{% block navbar %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block page_content %}
+<style>
+	body {
+		background-color: var(--subtle-accent);
+		font-size: var(--text-base);
+	}
+
+	.error-content {
+		text-align: left;
+		margin-top: var(--margin-md);
+		border-radius: 8px;
+		background-color: #f5f7fa;
+		max-height: 400px;
+		overflow: auto;
+	}
+
+	code::-webkit-scrollbar {
+		display: none;
+	}
+</style>
+
+<div class="error-page">
+	<div>
+		<h4>
+			{{ _("Error: {0}").format(http_status_code) }}
+		</h4>
+		<div class="details">
+			<p>{{ error_message }}</p>
+
+			<button class="btn btn-xs btn-secondary text-muted small view-error" >
+				{{ _("Show Error") }}
+			</button>
+
+			<div class="error-content hidden">
+				<pre><code>{{ error }}</code></pre>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+	let toggle_button = $(".view-error");
+	let error_log = $(".error-content");
+
+	toggle_button.on('click', () => {
+		if (error_log.hasClass("hidden")) {
+			toggle_button.html(`{{ _("Hide Error") }}`);
+			error_log.removeClass("hidden");
+		} else {
+			toggle_button.html(`{{ _("Show Error") }}`);
+			error_log.addClass("hidden");
+		}
+	})
+</script>
+{% endblock %}

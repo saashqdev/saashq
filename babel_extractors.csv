@@ -1,0 +1,13 @@
+**/hooks.py,saashq.gettext.extractors.navbar.extract
+**/doctype/*/*.json,saashq.gettext.extractors.doctype.extract
+**/workspace/*/*.json,saashq.gettext.extractors.workspace.extract
+**/onboarding_step/*/*.json,saashq.gettext.extractors.onboarding_step.extract
+**/module_onboarding/*/*.json,saashq.gettext.extractors.module_onboarding.extract
+**/report/*/*.json,saashq.gettext.extractors.report.extract
+**.py,saashq.gettext.extractors.python.extract
+**/templates/**.js,saashq.gettext.extractors.html_template.extract
+**.js,saashq.gettext.extractors.javascript.extract
+**.html,saashq.gettext.extractors.html_template.extract
+**.vue,saashq.gettext.extractors.html_template.extract
+**/custom/*.json,saashq.gettext.extractors.customization.extract
+**/fixtures/custom_field.json,saashq.gettext.extractors.custom_field.extract
