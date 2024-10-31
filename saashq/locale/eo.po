@@ -62,7 +62,7 @@ msgid "${values.doctype_name} has been added to queue for optimization"
 msgstr "crwdns127566:0${values.doctype_name}crwdne127566:0"
 
 #: saashq/public/js/saashq/ui/toolbar/about.js:8
-msgid "&copy; SaasHQ and contributors"
+msgid "&copy; Saashq Technologies Pvt. Ltd. and contributors"
 msgstr "crwdns110774:0crwdne110774:0"
 
 #. Label of the head_html (Code) field in DocType 'Website Settings'
@@ -16661,7 +16661,7 @@ msgid "No Printer is Available."
 msgstr "crwdns97748:0crwdne97748:0"
 
 #: saashq/core/doctype/rq_worker/rq_worker_list.js:3
-msgid "No RQ Workers connected. Try restarting the wrench."
+msgid "No RQ Workers connected. Try restarting the bench."
 msgstr "crwdns111052:0crwdne111052:0"
 
 #: saashq/public/js/saashq/form/link_selector.js:135
@@ -23307,7 +23307,7 @@ msgid "Server Script"
 msgstr "crwdns100650:0crwdne100650:0"
 
 #: saashq/utils/safe_exec.py:91
-msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
+msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
 msgstr "crwdns100660:0crwdne100660:0"
 
 #: saashq/core/doctype/server_script/server_script.js:37
@@ -26104,7 +26104,7 @@ msgid "This doctype has no orphan fields to trim"
 msgstr "crwdns112748:0crwdne112748:0"
 
 #: saashq/core/doctype/doctype/doctype.py:1055
-msgid "This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
+msgid "This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
 msgstr "crwdns112750:0crwdne112750:0"
 
 #: saashq/model/delete_doc.py:112

@@ -1,7 +1,7 @@
 /**
  * saashq.views.ReportView
  */
-import DataTable from "@saashq/datatable";
+import DataTable from "saashq-datatable";
 
 window.DataTable = DataTable;
 saashq.provide("saashq.views");

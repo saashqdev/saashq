@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Web Notes Technologies Pvt. Ltd. and Contributors
+# Copyright (c) 2015, Web Notes Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 import subprocess  # nosec
 import sys

@@ -62,8 +62,8 @@ msgid "${values.doctype_name} has been added to queue for optimization"
 msgstr "${values.doctype_name} se ha agregado a la cola para optimización"
 
 #: saashq/public/js/saashq/ui/toolbar/about.js:8
-msgid "&copy; SaasHQ and contributors"
-msgstr "&copy; SaasHQ y colaboradores"
+msgid "&copy; Saashq Technologies Pvt. Ltd. and contributors"
+msgstr "&copy; Saashq Technologies Pvt. Ltd. y colaboradores"
 
 #. Label of the head_html (Code) field in DocType 'Website Settings'
 #: saashq/website/doctype/website_settings/website_settings.json
@@ -16680,8 +16680,8 @@ msgid "No Printer is Available."
 msgstr "No hay impresora disponible."
 
 #: saashq/core/doctype/rq_worker/rq_worker_list.js:3
-msgid "No RQ Workers connected. Try restarting the wrench."
-msgstr "No hay trabajadores RQ conectados. Intente reiniciar el wrench."
+msgid "No RQ Workers connected. Try restarting the bench."
+msgstr "No hay trabajadores RQ conectados. Intente reiniciar el bench."
 
 #: saashq/public/js/saashq/form/link_selector.js:135
 msgid "No Results"
@@ -23326,8 +23326,8 @@ msgid "Server Script"
 msgstr "Script del servidor"
 
 #: saashq/utils/safe_exec.py:91
-msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
-msgstr "Los scripts de servidor están desactivados. Por favor, habilite los scripts de servidor desde la configuración de wrench."
+msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
+msgstr "Los scripts de servidor están desactivados. Por favor, habilite los scripts de servidor desde la configuración de bench."
 
 #: saashq/core/doctype/server_script/server_script.js:37
 msgid "Server Scripts feature is not available on this site."
@@ -26140,7 +26140,7 @@ msgid "This doctype has no orphan fields to trim"
 msgstr ""
 
 #: saashq/core/doctype/doctype/doctype.py:1055
-msgid "This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
+msgid "This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
 msgstr ""
 
 #: saashq/model/delete_doc.py:112

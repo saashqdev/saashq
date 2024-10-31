@@ -1,4 +1,4 @@
-# Copyright (c) 2013, SaasHQ and contributors
+# Copyright (c) 2013, Saashq Technologies Pvt. Ltd. and contributors
 # License: MIT. See LICENSE
 import saashq
 from saashq import _

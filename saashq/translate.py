@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2021, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 """
 saashq.translate
@@ -19,7 +19,7 @@ from csv import reader, writer
 
 import saashq
 from saashq.query_builder import DocType, Field
-from saashq.utils import cstr, get_wrench_path, is_html, strip, strip_html_tags, unique
+from saashq.utils import cstr, get_bench_path, is_html, strip, strip_html_tags, unique
 
 REPORT_TRANSLATE_PATTERN = re.compile('"([^:,^"]*):')
 CSV_STRIP_WHITESPACE_PATTERN = re.compile(r"{\s?([0-9]+)\s?}")
@@ -176,7 +176,7 @@ def get_translations_from_apps(lang, apps=None):
 	translations = {}
 	from saashq.gettext.translate import get_translations_from_mo
 
-	for app in apps or saashq.get_installed_apps(_ensure_on_wrench=True):
+	for app in apps or saashq.get_installed_apps(_ensure_on_bench=True):
 		translations.update(get_translations_from_csv(lang, app) or {})
 		translations.update(get_translations_from_mo(lang, app) or {})
 	if parent := get_parent_language(lang):
@@ -550,7 +550,7 @@ def get_messages_from_include_files(app_name=None):
 def get_all_messages_from_js_files(app_name=None):
 	"""Extracts all translatable strings from app `.js` files"""
 	messages = []
-	for app in [app_name] if app_name else saashq.get_installed_apps(_ensure_on_wrench=True):
+	for app in [app_name] if app_name else saashq.get_installed_apps(_ensure_on_bench=True):
 		if os.path.exists(saashq.get_app_path(app, "public")):
 			for basepath, folders, files in os.walk(saashq.get_app_path(app, "public")):  # noqa: B007
 				if "saashq/public/js/lib" in basepath:
@@ -579,7 +579,7 @@ def get_messages_from_file(path: str) -> list[tuple[str, str, str | None, int]]:
 
 	saashq.flags.scanned_files.add(path)
 
-	wrench_path = get_wrench_path()
+	bench_path = get_bench_path()
 	if not os.path.exists(path):
 		return []
 
@@ -603,7 +603,7 @@ def get_messages_from_file(path: str) -> list[tuple[str, str, str | None, int]]:
 			messages += extract_messages_from_javascript_code(file_contents)
 
 		return [
-			(os.path.relpath(path, wrench_path), message, context, line)
+			(os.path.relpath(path, bench_path), message, context, line)
 			for (line, message, context) in messages
 		]
 

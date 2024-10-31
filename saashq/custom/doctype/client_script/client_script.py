@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 import saashq
 from saashq.model.document import Document

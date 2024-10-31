@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 def get_jenv():
 	import saashq
@@ -123,7 +123,7 @@ def get_jloader():
 		if not apps:
 			apps = list(
 				reversed(
-					saashq.local.flags.web_pages_apps or saashq.get_installed_apps(_ensure_on_wrench=True)
+					saashq.local.flags.web_pages_apps or saashq.get_installed_apps(_ensure_on_bench=True)
 				)
 			)
 

@@ -1,4 +1,4 @@
-import { Chart } from "@saashq/charts/dist/saashq-charts.esm";
+import { Chart } from "saashq-charts/dist/saashq-charts.esm";
 
 saashq.provide("saashq.ui");
 saashq.Chart = Chart;

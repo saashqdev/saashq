@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ and contributors
+# Copyright (c) 2018, Saashq Technologies Pvt. Ltd. and contributors
 # License: MIT. See LICENSE
 
 from datetime import timedelta

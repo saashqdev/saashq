@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2022, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
 import functools
@@ -320,8 +320,8 @@ def get_traceback(with_context=False) -> str:
 		trace_list = traceback.format_exception(exc)
 		tb = "".join(cstr(t) for t in trace_list)
 
-	wrench_path = get_wrench_path() + "/"
-	return tb.replace(wrench_path, "")
+	bench_path = get_bench_path() + "/"
+	return tb.replace(bench_path, "")
 
 
 @functools.lru_cache(maxsize=1)
@@ -512,18 +512,18 @@ def get_files_path(*path, **kwargs):
 	return get_site_path("private" if kwargs.get("is_private") else "public", "files", *path)
 
 
-def get_wrench_path():
-	return os.environ.get("SAASHQ_WRENCH_ROOT") or os.path.realpath(
+def get_bench_path():
+	return os.environ.get("SAASHQ_BENCH_ROOT") or os.path.realpath(
 		os.path.join(os.path.dirname(saashq.__file__), "..", "..", "..")
 	)
 
 
-def get_wrench_id():
-	return saashq.get_conf().get("wrench_id", get_wrench_path().strip("/").replace("/", "-"))
+def get_bench_id():
+	return saashq.get_conf().get("bench_id", get_bench_path().strip("/").replace("/", "-"))
 
 
 def get_site_id(site=None):
-	return f"{site or saashq.local.site}@{get_wrench_id()}"
+	return f"{site or saashq.local.site}@{get_bench_id()}"
 
 
 def get_backups_path():
@@ -856,7 +856,7 @@ def get_db_count(*args):
 
 	Example:
 	        via terminal:
-	                wrench --site erpnexus.local execute saashq.utils.get_db_count --args "['DocType', 'Communication']"
+	                bench --site erpnexus.local execute saashq.utils.get_db_count --args "['DocType', 'Communication']"
 	"""
 	db_count = {}
 	for doctype in args:
@@ -876,7 +876,7 @@ def call(fn, *args, **kwargs):
 
 	Example:
 	        via terminal:
-	                wrench --site erpnexus.local execute saashq.utils.call --args '''["saashq.get_all", "Activity Log"]''' --kwargs '''{"fields": ["user", "creation", "full_name"], "filters":{"Operation": "Login", "Status": "Success"}, "limit": "10"}'''
+	                bench --site erpnexus.local execute saashq.utils.call --args '''["saashq.get_all", "Activity Log"]''' --kwargs '''{"fields": ["user", "creation", "full_name"], "filters":{"Operation": "Login", "Status": "Success"}, "limit": "10"}'''
 	"""
 	return json.loads(saashq.as_json(saashq.call(fn, *args, **kwargs)))
 
@@ -975,8 +975,8 @@ def get_assets_json():
 	return saashq.local.assets_json
 
 
-def get_wrench_relative_path(file_path):
-	"""Fix paths relative to the wrench root directory if exists and return the absolute path.
+def get_bench_relative_path(file_path):
+	"""Fix paths relative to the bench root directory if exists and return the absolute path.
 
 	Args:
 	        file_path (str, Path): Path of a file that exists on the file system

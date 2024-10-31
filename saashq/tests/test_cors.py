@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2020, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 from werkzeug.wrappers import Response
 

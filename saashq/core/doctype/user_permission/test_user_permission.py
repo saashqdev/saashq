@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and Contributors
+# Copyright (c) 2021, Saashq Technologies and Contributors
 # See LICENSE
 import saashq
 from saashq.core.doctype.doctype.test_doctype import new_doctype

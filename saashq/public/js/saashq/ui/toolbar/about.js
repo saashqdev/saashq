@@ -32,7 +32,7 @@ saashq.ui.misc.about = function () {
 						</b>
 					</p>
 					<hr>
-					<p class='text-muted'>${__("&copy; SaasHQ and contributors")} </p>
+					<p class='text-muted'>${__("&copy; Saashq Technologies Pvt. Ltd. and contributors")} </p>
 					</div>`,
 				saashq.app
 			)

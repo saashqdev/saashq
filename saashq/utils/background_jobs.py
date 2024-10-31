@@ -24,7 +24,7 @@ from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_fi
 import saashq
 import saashq.monitor
 from saashq import _
-from saashq.utils import CallbackManager, cint, get_wrench_id
+from saashq.utils import CallbackManager, cint, get_bench_id
 from saashq.utils.commands import log
 from saashq.utils.redis_queue import RedisQueue
 
@@ -519,7 +519,7 @@ def get_redis_conn(username=None, password=None):
 			cred["username"] = username
 			cred["password"] = password
 		else:
-			cred["username"] = conf.rq_username or get_wrench_id()
+			cred["username"] = conf.rq_username or get_bench_id()
 			cred["password"] = conf.rq_password
 
 	elif os.environ.get("RQ_ADMIN_PASWORD"):
@@ -534,7 +534,7 @@ def get_redis_conn(username=None, password=None):
 	except redis.exceptions.AuthenticationError:
 		log(
 			f'Wrong credentials used for {cred.username or "default user"}. '
-			"You can reset credentials using `wrench create-rq-users` CLI and restart the server",
+			"You can reset credentials using `bench create-rq-users` CLI and restart the server",
 			colour="red",
 		)
 		raise
@@ -555,23 +555,23 @@ def get_redis_connection_without_auth():
 
 
 def get_queues(connection=None) -> list[Queue]:
-	"""Get all the queues linked to the current wrench."""
+	"""Get all the queues linked to the current bench."""
 	queues = Queue.all(connection=connection or get_redis_conn())
 	return [q for q in queues if is_queue_accessible(q)]
 
 
 def generate_qname(qtype: str) -> str:
-	"""Generate qname by combining wrench ID and queue type.
+	"""Generate qname by combining bench ID and queue type.
 
 	qnames are useful to define namespaces of customers.
 	"""
 	if isinstance(qtype, list):
 		qtype = ",".join(qtype)
-	return f"{get_wrench_id()}:{qtype}"
+	return f"{get_bench_id()}:{qtype}"
 
 
 def is_queue_accessible(qobj: Queue) -> bool:
-	"""Checks whether queue is relate to current wrench or not."""
+	"""Checks whether queue is relate to current bench or not."""
 	accessible_queues = [generate_qname(q) for q in list(get_queues_timeout())]
 	return qobj.name in accessible_queues
 
@@ -694,6 +694,9 @@ def _start_sentry():
 
 	if tracing_sample_rate := os.getenv("SENTRY_TRACING_SAMPLE_RATE"):
 		kwargs["traces_sample_rate"] = float(tracing_sample_rate)
+
+	if profiling_sample_rate := os.getenv("SENTRY_PROFILING_SAMPLE_RATE"):
+		kwargs["profiles_sample_rate"] = float(profiling_sample_rate)
 
 	sentry_sdk.init(
 		dsn=sentry_dsn,

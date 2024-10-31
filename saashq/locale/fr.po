@@ -62,7 +62,7 @@ msgid "${values.doctype_name} has been added to queue for optimization"
 msgstr ""
 
 #: saashq/public/js/saashq/ui/toolbar/about.js:8
-msgid "&copy; SaasHQ and contributors"
+msgid "&copy; Saashq Technologies Pvt. Ltd. and contributors"
 msgstr ""
 
 #. Label of the head_html (Code) field in DocType 'Website Settings'
@@ -16791,7 +16791,7 @@ msgid "No Printer is Available."
 msgstr "Aucune imprimante n&#39;est disponible."
 
 #: saashq/core/doctype/rq_worker/rq_worker_list.js:3
-msgid "No RQ Workers connected. Try restarting the wrench."
+msgid "No RQ Workers connected. Try restarting the bench."
 msgstr ""
 
 #: saashq/public/js/saashq/form/link_selector.js:135
@@ -23437,7 +23437,7 @@ msgid "Server Script"
 msgstr "Script de serveur"
 
 #: saashq/utils/safe_exec.py:91
-msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
+msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
 msgstr ""
 
 #: saashq/core/doctype/server_script/server_script.js:37
@@ -26234,7 +26234,7 @@ msgid "This doctype has no orphan fields to trim"
 msgstr ""
 
 #: saashq/core/doctype/doctype/doctype.py:1055
-msgid "This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
+msgid "This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
 msgstr ""
 
 #: saashq/model/delete_doc.py:112

@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and Contributors
+# Copyright (c) 2022, Saashq Technologies and Contributors
 # See license.txt
 
 import time

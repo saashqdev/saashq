@@ -12,7 +12,7 @@ from babel.messages.mofile import read_mo, write_mo
 from babel.messages.pofile import read_po, write_po
 
 import saashq
-from saashq.utils import get_wrench_path
+from saashq.utils import get_bench_path
 
 PO_DIR = "locale"  # po and pot files go into [app]/locale
 POT_FILE = "main.pot"  # the app's pot file is always main.pot
@@ -42,7 +42,7 @@ def get_po_dir(app: str) -> Path:
 
 
 def get_locale_dir() -> Path:
-	return Path(get_wrench_path()) / "sites" / "assets" / "locale"
+	return Path(get_bench_path()) / "sites" / "assets" / "locale"
 
 
 def get_locales(app: str) -> list[str]:

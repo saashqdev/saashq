@@ -48,8 +48,8 @@ class TestBoilerPlate(unittest.TestCase):
 			"develop",  # branch name
 		]
 
-		cls.wrench_path = saashq.utils.get_wrench_path()
-		cls.apps_dir = os.path.join(cls.wrench_path, "apps")
+		cls.bench_path = saashq.utils.get_bench_path()
+		cls.apps_dir = os.path.join(cls.bench_path, "apps")
 		cls.gitignore_file = ".gitignore"
 		cls.git_folder = ".git"
 
@@ -77,7 +77,7 @@ class TestBoilerPlate(unittest.TestCase):
 
 	@classmethod
 	def delete_test_app(cls, app_name):
-		test_app_dir = os.path.join(cls.wrench_path, "apps", app_name)
+		test_app_dir = os.path.join(cls.bench_path, "apps", app_name)
 		if os.path.exists(test_app_dir):
 			shutil.rmtree(test_app_dir)
 
@@ -120,7 +120,7 @@ class TestBoilerPlate(unittest.TestCase):
 		del hooks["create_github_workflow"]
 
 		self.create_app(hooks)
-		new_app_dir = os.path.join(self.wrench_path, self.apps_dir, app_name)
+		new_app_dir = os.path.join(self.bench_path, self.apps_dir, app_name)
 
 		paths = self.get_paths(new_app_dir, app_name)
 		for path in paths:

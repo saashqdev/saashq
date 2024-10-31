@@ -1,7 +1,7 @@
 """
 This file contains multiple primitive tests for avoiding performance regressions.
 
-- Time bound tests: Wrenchmarks are done on GHA before adding numbers
+- Time bound tests: Benchmarks are done on GHA before adding numbers
 - Query count tests: More than expected # of queries for any action is frequent source of
   performance issues. This guards against such problems.
 

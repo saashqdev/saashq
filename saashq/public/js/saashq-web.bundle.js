@@ -20,7 +20,7 @@ import "./saashq/model/meta.js";
 import "./saashq/model/model.js";
 import "./saashq/model/perm.js";
 
-import "./bootstrap-4-web.bundle";
+import "./bootstrap-4-web.bundle.js";
 
 import "../../website/js/website.js";
 import "./saashq/socketio_client.js";

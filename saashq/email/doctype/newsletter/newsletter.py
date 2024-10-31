@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2021, Saashq Technologies Pvt. Ltd. and Contributors
 # MIT License. See LICENSE
 
 

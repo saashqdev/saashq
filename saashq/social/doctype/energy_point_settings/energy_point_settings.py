@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and contributors
+# Copyright (c) 2019, Saashq Technologies and contributors
 # License: MIT. See LICENSE
 
 import saashq
@@ -23,7 +23,9 @@ class EnergyPointSettings(Document):
 		review_levels: DF.Table[ReviewLevel]
 	# end: auto-generated types
 
-	pass
+	def on_update(self):
+		if self.has_value_changed("enabled"):
+			saashq.cache.delete_key("bootinfo")
 
 
 def is_energy_point_enabled():

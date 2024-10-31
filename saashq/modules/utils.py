@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2022, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 """
 	Utilities for using modules
@@ -26,7 +26,7 @@ def export_module_json(doc: "Document", is_standard: bool, module: str) -> str |
 
 	Return the absolute file_path without the extension.
 	Eg: For exporting a Print Format "_Test Print Format 1", the return value will be
-	`/home/gavin/saashq-wrench/apps/saashq/saashq/core/print_format/_test_print_format_1/_test_print_format_1`
+	`/home/gavin/saashq-bench/apps/saashq/saashq/core/print_format/_test_print_format_1/_test_print_format_1`
 	"""
 	if not saashq.flags.in_import and is_standard and saashq.conf.developer_mode:
 		from saashq.modules.export_file import export_to_files
@@ -55,7 +55,7 @@ def export_customizations(
 	module: str, doctype: str, sync_on_migrate: bool = False, with_permissions: bool = False
 ):
 	"""Export Custom Field and Property Setter for the current document to the app folder.
-	This will be synced with wrench migrate"""
+	This will be synced with bench migrate"""
 
 	sync_on_migrate = cint(sync_on_migrate)
 	with_permissions = cint(with_permissions)

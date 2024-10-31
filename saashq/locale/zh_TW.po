@@ -27821,7 +27821,7 @@ msgid "Server Script"
 msgstr ""
 
 #: utils/safe_exec.py:90
-msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
+msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
 msgstr ""
 
 #: core/doctype/server_script/server_script.js:32

@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and Contributors
+# Copyright (c) 2022, Saashq Technologies and Contributors
 
 # See license.txt
 
@@ -109,7 +109,7 @@ class TestRQJob(IntegrationTestCase):
 			for q in ["default", "short"]:
 				saashq.enqueue(self.BG_JOB, sleep=1, queue=q)
 
-		_, stderr = execute_in_shell("wrench worker --queue short,default --burst", check_exit_code=True)
+		_, stderr = execute_in_shell("bench worker --queue short,default --burst", check_exit_code=True)
 		self.assertIn("quitting", cstr(stderr))
 
 	@timeout
@@ -119,7 +119,7 @@ class TestRQJob(IntegrationTestCase):
 				saashq.enqueue(self.BG_JOB, sleep=1, queue=q)
 
 		_, stderr = execute_in_shell(
-			"wrench worker-pool --queue short,default --burst --num-workers=4", check_exit_code=True
+			"bench worker-pool --queue short,default --burst --num-workers=4", check_exit_code=True
 		)
 		self.assertIn("quitting", cstr(stderr))
 
@@ -174,7 +174,7 @@ class TestRQJob(IntegrationTestCase):
 
 		# If this starts failing analyze memory usage using memray or some equivalent tool to find
 		# offending imports/function calls.
-		# Refer this PR: https://github.com/saashqdev/saashq/pull/21467
+		# Refer this PR: https://github.com/saashq/saashq/pull/21467
 		LAST_MEASURED_USAGE = 41
 		self.assertLessEqual(rss, LAST_MEASURED_USAGE * 1.05, msg)
 

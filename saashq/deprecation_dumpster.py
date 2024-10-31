@@ -387,7 +387,7 @@ def test_xmlrunner_wrapper(output):
 		import xmlrunner
 	except ImportError:
 		print("Development dependencies are required to execute this command. To install run:")
-		print("$ wrench setup requirements --dev")
+		print("$ bench setup requirements --dev")
 		raise
 
 	def _runner(*args, **kwargs):

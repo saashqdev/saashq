@@ -55,7 +55,7 @@ def get_logger(
 	        file_count (int, optional): Max count of log files to be retained via Log Rotation. Defaults to 20.
 	        stream_only (bool, optional): Whether to stream logs only to stderr (True) or use log files (False). Defaults to False.
 
-	Return a Python logger object with Site and Wrench level logging capabilities.
+	Return a Python logger object with Site and Bench level logging capabilities.
 	"""
 
 	if allow_site is True:

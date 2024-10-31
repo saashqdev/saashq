@@ -15,8 +15,8 @@
 	<a target="_blank" href="#LICENSE" title="License: MIT"><img src="https://img.shields.io/badge/License-MIT-success.svg"></a>
 	<a target="_blank" href="https://www.python.org/downloads/" title="Python version"><img src="https://img.shields.io/badge/python-%3E=_3.10-success.svg"></a>
 	<a href="https://saashqframework.com/docs"><img src="https://img.shields.io/badge/docs-%F0%9F%93%96-success.svg"/></a>
-	<a href="https://github.com/saashqdev/saashq/actions/workflows/server-tests.yml"><img src="https://github.com/saashqdev/saashq/actions/workflows/server-tests.yml/badge.svg"></a>
-	<a href="https://github.com/saashqdev/saashq/actions/workflows/ui-tests.yml"><img src="https://github.com/saashqdev/saashq/actions/workflows/ui-tests.yml/badge.svg?branch=develop"></a>
+	<a href="https://github.com/saashq/saashq/actions/workflows/server-tests.yml"><img src="https://github.com/saashq/saashq/actions/workflows/server-tests.yml/badge.svg"></a>
+	<a href="https://github.com/saashq/saashq/actions/workflows/ui-tests.yml"><img src="https://github.com/saashq/saashq/actions/workflows/ui-tests.yml/badge.svg?branch=develop"></a>
 	<a href="https://codecov.io/gh/saashq/saashq"><img src="https://codecov.io/gh/saashq/saashq/branch/develop/graph/badge.svg?token=XoTa679hIj"/></a>
 </div>
 
@@ -40,11 +40,11 @@ Full-stack web application framework that uses Python and MariaDB on the server 
 
 ### Production
 * [Managed Hosting on Saashq Cloud](https://saashqcloud.com/)
-* [Easy install script using Docker images](https://github.com/saashq/wrench/tree/develop#easy-install-script)
-* [Manual install using Docker images](https://github.com/saashqdev/shq-framework_docker)
+* [Easy install script using Docker images](https://github.com/saashq/bench/tree/develop#easy-install-script)
+* [Manual install using Docker images](https://github.com/saashq/saashq_docker)
 
 ### Development
-* [Easy install script using Docker images](https://github.com/saashq/wrench/tree/develop#easy-install-script)
+* [Easy install script using Docker images](https://github.com/saashq/bench/tree/develop#easy-install-script)
 * [Development installation on bare metal](https://saashqframework.com/docs/user/en/installation)
 
 

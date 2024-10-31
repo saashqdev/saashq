@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2022, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 import os
 import re
@@ -84,7 +84,7 @@ def get_assets_link(saashq_head) -> str:
 
 	if tag:
 		# if tag exists, download assets from github release
-		url = f"https://github.com/saashqdev/saashq/releases/downloads/{tag}/assets.tar.gz"
+		url = f"https://github.com/saashq/saashq/releases/download/{tag}/assets.tar.gz"
 	else:
 		url = f"http://assets.saashqframework.com/{saashq_head}.tar.gz"
 
@@ -118,7 +118,7 @@ def setup_assets(assets_archive):
 	with tarfile.open(assets_archive) as tar:
 		for file in tar:
 			if not file.isdir():
-				dest = "." + file.name.replace("./saashq-wrench/sites", "")
+				dest = "." + file.name.replace("./saashq-bench/sites", "")
 				asset_directory = os.path.dirname(dest)
 				show = dest.replace("./assets/", "")
 
@@ -153,7 +153,7 @@ def download_saashq_assets(verbose=True) -> bool:
 		click.secho(str(e), fg="yellow")
 
 	except Exception as e:
-		# TODO: log traceback in wrench.log
+		# TODO: log traceback in bench.log
 		click.secho(str(e), fg="red")
 
 	finally:

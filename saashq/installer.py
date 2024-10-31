@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2022, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 import configparser
 import gzip
@@ -79,7 +79,7 @@ def _new_site(
 	if rollback_callback:
 		rollback_callback.add(lambda: shutil.rmtree(saashq.get_site_path()))
 
-	with filelock("wrench_new_site", timeout=1):
+	with filelock("bench_new_site", timeout=1):
 		install_db(
 			root_login=db_root_username,
 			root_password=db_root_password,
@@ -187,7 +187,7 @@ def find_org(org_repo: str) -> tuple[str, str]:
 	"""find the org a repo is in
 
 	find_org()
-	ref -> https://github.com/saashq/wrench/blob/develop/wrench/utils/__init__.py#L390
+	ref -> https://github.com/saashq/bench/blob/develop/bench/utils/__init__.py#L390
 
 	:param org_repo:
 	:type org_repo: str
@@ -215,7 +215,7 @@ def fetch_details_from_tag(_tag: str) -> tuple[str, str, str]:
 	"""parse org, repo, tag from string
 
 	fetch_details_from_tag()
-	ref -> https://github.com/saashq/wrench/blob/develop/wrench/utils/__init__.py#L403
+	ref -> https://github.com/saashq/bench/blob/develop/bench/utils/__init__.py#L403
 
 	:param _tag: input string
 	:type _tag: str
@@ -243,7 +243,7 @@ def parse_app_name(name: str) -> str:
 	"""parse repo name from name
 
 	__setup_details_from_git()
-	ref -> https://github.com/saashq/wrench/blob/develop/wrench/app.py#L114
+	ref -> https://github.com/saashq/bench/blob/develop/bench/app.py#L114
 
 
 	:param name: git tag
@@ -748,9 +748,9 @@ def extract_files(site_name, file_path):
 	import shutil
 	import subprocess
 
-	from saashq.utils import get_wrench_relative_path
+	from saashq.utils import get_bench_relative_path
 
-	file_path = get_wrench_relative_path(file_path)
+	file_path = get_bench_relative_path(file_path)
 
 	# Need to do saashq.init to maintain the site locals
 	saashq.init(site_name)
@@ -777,7 +777,7 @@ def extract_files(site_name, file_path):
 
 
 def is_downgrade(sql_file_path, verbose=False):
-	"""Check if input db backup will get downgraded on current wrench
+	"""Check if input db backup will get downgraded on current bench
 
 	This function is only tested with mariadb.
 	TODO: Add postgres support

@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and contributors
+# Copyright (c) 2020, Saashq Technologies and contributors
 # License: MIT. See LICENSE
 
 import os

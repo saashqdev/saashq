@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
 import copy
@@ -1053,7 +1053,7 @@ class DocType(Document):
 		if content.get("modified") and get_datetime(self.modified) < get_datetime(content.get("modified")):
 			saashq.msgprint(
 				_(
-					"This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
+					"This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
 				),
 				alert=True,
 				indicator="yellow",

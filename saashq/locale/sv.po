@@ -62,8 +62,8 @@ msgid "${values.doctype_name} has been added to queue for optimization"
 msgstr "${values.doctype_name} har lagts till i kö för optimering"
 
 #: saashq/public/js/saashq/ui/toolbar/about.js:8
-msgid "&copy; SaasHQ and contributors"
-msgstr "&copy; SaasHQ och bidragare"
+msgid "&copy; Saashq Technologies Pvt. Ltd. and contributors"
+msgstr "&copy; Saashq Technologies Pvt. Ltd. och bidragare"
 
 #. Label of the head_html (Code) field in DocType 'Website Settings'
 #: saashq/website/doctype/website_settings/website_settings.json
@@ -16850,8 +16850,8 @@ msgid "No Printer is Available."
 msgstr "Ingen Skrivare är Tillgänglig."
 
 #: saashq/core/doctype/rq_worker/rq_worker_list.js:3
-msgid "No RQ Workers connected. Try restarting the wrench."
-msgstr "Inga RQ Workers kopplade.Prova starta om wrench."
+msgid "No RQ Workers connected. Try restarting the bench."
+msgstr "Inga RQ Workers kopplade.Prova starta om bench."
 
 #: saashq/public/js/saashq/form/link_selector.js:135
 msgid "No Results"
@@ -23496,8 +23496,8 @@ msgid "Server Script"
 msgstr "Server Skript"
 
 #: saashq/utils/safe_exec.py:91
-msgid "Server Scripts are disabled. Please enable server scripts from wrench configuration."
-msgstr "Server Skript är inaktiverad. Aktivera Server Skript från wrench."
+msgid "Server Scripts are disabled. Please enable server scripts from bench configuration."
+msgstr "Server Skript är inaktiverad. Aktivera Server Skript från bench."
 
 #: saashq/core/doctype/server_script/server_script.js:37
 msgid "Server Scripts feature is not available on this site."
@@ -26321,8 +26321,8 @@ msgid "This doctype has no orphan fields to trim"
 msgstr "Denna doctype har inga övergivna fält att trimma"
 
 #: saashq/core/doctype/doctype/doctype.py:1055
-msgid "This doctype has pending migrations, run 'wrench migrate' before modifying the doctype to avoid losing changes."
-msgstr "Denna doctype har pågående migrering, kör 'wrench migrate' innan du ändrar doctype för att undvika att förlora ändringar."
+msgid "This doctype has pending migrations, run 'bench migrate' before modifying the doctype to avoid losing changes."
+msgstr "Denna doctype har pågående migrering, kör 'bench migrate' innan du ändrar doctype för att undvika att förlora ändringar."
 
 #: saashq/model/delete_doc.py:112
 msgid "This document can not be deleted right now as it's being modified by another user. Please try again after some time."

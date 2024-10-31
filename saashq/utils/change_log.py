@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
 import json
@@ -110,7 +110,7 @@ def get_versions():
 	                }
 	        }"""
 	versions = {}
-	for app in saashq.get_installed_apps(_ensure_on_wrench=True):
+	for app in saashq.get_installed_apps(_ensure_on_bench=True):
 		app_hooks = saashq.get_hooks(app_name=app)
 		versions[app] = {
 			"title": app_hooks.get("app_title")[0],

@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, FOSS United and Contributors
+# Copyright (c) 2021, FOSS United and Contributors
 # See license.txt
 
 # import saashq

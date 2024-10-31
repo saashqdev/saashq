@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and Contributors
+# Copyright (c) 2015, Saashq Technologies and Contributors
 # License: MIT. See LICENSE
 import saashq
 from saashq.contacts.doctype.address_template.address_template import get_default_address_template

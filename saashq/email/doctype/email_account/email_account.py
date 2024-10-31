@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ and contributors
+# Copyright (c) 2022, Saashq Technologies Pvt. Ltd. and contributors
 # License: MIT. See LICENSE
 
 import email.utils

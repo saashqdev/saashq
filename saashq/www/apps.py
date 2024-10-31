@@ -1,4 +1,4 @@
-# Copyright (c) 2023, SaasHQ
+# Copyright (c) 2023, Saashq Technologies Pvt. Ltd. and Contributors
 # MIT License. See license.txt
 
 import saashq

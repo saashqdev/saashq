@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and contributors
+# Copyright (c) 2020, Saashq Technologies and contributors
 # License: MIT. See LICENSE
 
 from collections import defaultdict
@@ -117,6 +117,10 @@ class Workspace(Document):
 	def before_export(self, doc):
 		if doc.title != doc.label and doc.label == doc.name:
 			self.name = doc.name = doc.label = doc.title
+
+	def on_trash(self):
+		if self.public and not is_workspace_manager():
+			saashq.throw(_("You need to be Workspace Manager to delete a public workspace."))
 
 	def after_delete(self):
 		if disable_saving_as_public():

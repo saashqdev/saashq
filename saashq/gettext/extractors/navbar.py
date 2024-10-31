@@ -1,7 +1,7 @@
 import importlib
 from pathlib import Path
 
-from saashq.utils import get_wrench_path
+from saashq.utils import get_bench_path
 
 
 def extract(fileobj, *args, **kwargs):
@@ -46,6 +46,6 @@ def extract(fileobj, *args, **kwargs):
 
 def get_module(path):
 	_path = Path(path)
-	rel_path = _path.relative_to(get_wrench_path())
+	rel_path = _path.relative_to(get_bench_path())
 	import_path = ".".join(rel_path.parts[2:]).rstrip(".py")
 	return importlib.import_module(import_path)

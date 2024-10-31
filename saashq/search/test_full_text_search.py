@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2020, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 from saashq.search.full_text_search import FullTextSearch
 from saashq.tests import IntegrationTestCase
@@ -116,7 +116,7 @@ def get_documents():
 		{
 			"name": "sw/erpnexus",
 			"content": """ERPNexus is a free and open-source integrated Enterprise Resource Planning software developed by
-			SaasHQ and is built on MariaDB database system using a Python based server-side framework.
+			Saashq Technologies Pvt. Ltd. and is built on MariaDB database system using a Python based server-side framework.
 			ERPNexus is a generic ERP software used by manufacturers, distributors and services companies. CommonSearchTerm""",
 		}
 	)

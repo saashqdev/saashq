@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and Contributors
+# Copyright (c) 2019, Saashq Technologies and Contributors
 # License: MIT. See LICENSE
 import saashq
 from saashq.core.doctype.data_export.exporter import DataExporter

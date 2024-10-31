@@ -8,7 +8,7 @@ from filelock import Timeout
 
 import saashq
 from saashq import _
-from saashq.utils import get_wrench_path, get_site_path
+from saashq.utils import get_bench_path, get_site_path
 from saashq.utils.file_lock import LockTimeoutError
 
 LOCKS_DIR = "locks"
@@ -22,11 +22,11 @@ def filelock(lock_name: str, *, timeout=30, is_global=False):
 	        lock_name: Unique name to identify a specific lock. Lockfile called `{name}.lock` will be
 	        created.
 	        timeout: time to wait before failing.
-	        is_global: if set lock is global to wrench
+	        is_global: if set lock is global to bench
 
 	Lock file location:
-	        global - {wrench_dir}/config/{name}.lock
-	        site - {wrench_dir}/sites/sitename/{name}.lock
+	        global - {bench_dir}/config/{name}.lock
+	        site - {bench_dir}/sites/sitename/{name}.lock
 
 	"""
 
@@ -34,7 +34,7 @@ def filelock(lock_name: str, *, timeout=30, is_global=False):
 	if not is_global:
 		lock_path = os.path.abspath(get_site_path(LOCKS_DIR, lock_filename))
 	else:
-		lock_path = os.path.abspath(os.path.join(get_wrench_path(), "config", lock_filename))
+		lock_path = os.path.abspath(os.path.join(get_bench_path(), "config", lock_filename))
 
 	try:
 		with _StrongFileLock(lock_path, timeout=timeout):

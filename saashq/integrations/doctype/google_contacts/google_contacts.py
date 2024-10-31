@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and contributors
+# Copyright (c) 2019, Saashq Technologies and contributors
 # License: MIT. See LICENSE
 
 
@@ -155,7 +155,7 @@ def sync_contacts_from_google_contacts(g_contact):
 			"import_google_contacts", dict(progress=idx + 1, total=len(results)), user=saashq.session.user
 		)
 		# Work-around to fix
-		# https://github.com/saashqdev/saashq/issues/22648
+		# https://github.com/saashq/saashq/issues/22648
 		if not connection.get("names"):
 			continue
 

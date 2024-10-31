@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq and Contributors
+# Copyright (c) 2022, Saashq and Contributors
 # License: MIT. See LICENSE
 
 

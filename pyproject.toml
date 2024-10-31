@@ -93,8 +93,8 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://saashqframework.com/"
-Repository = "https://github.com/saashqdev/saashq.git"
-"Bug Reports" = "https://github.com/saashqdev/saashq/issues"
+Repository = "https://github.com/saashq/saashq.git"
+"Bug Reports" = "https://github.com/saashq/saashq/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -138,7 +138,7 @@ test = [
 requires = ["flit_core >=3.4,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.wrench.dev-dependencies]
+[tool.bench.dev-dependencies]
 coverage = "~=6.5.0"
 Faker = "~=18.10.1"
 pyngrok = "~=6.0.0"

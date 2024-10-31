@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and contributors
+# Copyright (c) 2021, Saashq Technologies and contributors
 # License: MIT. See LICENSE
 from tenacity import retry, retry_if_exception_type, stop_after_attempt
 

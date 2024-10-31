@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, Saashq Technologies and Contributors
+# Copyright (c) 2017, Saashq Technologies and Contributors
 # License: MIT. See LICENSE
 import json
 from contextlib import contextmanager

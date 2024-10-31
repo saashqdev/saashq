@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2020, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
 import datetime
@@ -41,7 +41,7 @@ def get_trace_id() -> str | None:
 
 
 def log_file():
-	return os.path.join(saashq.utils.get_wrench_path(), "logs", "monitor.json.log")
+	return os.path.join(saashq.utils.get_bench_path(), "logs", "monitor.json.log")
 
 
 class Monitor:

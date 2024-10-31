@@ -1,4 +1,4 @@
-// Copyleft (l) 2023-Present, SaasHQ
+// Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
 
 saashq.has_indicator = function (doctype) {
 	// returns true if indicator is present

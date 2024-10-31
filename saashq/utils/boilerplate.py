@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2021, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
 import contextlib
@@ -149,7 +149,7 @@ def _create_app_boilerplate(dest, hooks, no_git=False):
 	saashq.create_folder(os.path.join(dest, hooks.app_name, hooks.app_name, "public", "js"))
 
 	# add .gitkeep file so that public folder is committed to git
-	# this is needed because if public doesn't exist, wrench build doesn't symlink the apps assets
+	# this is needed because if public doesn't exist, bench build doesn't symlink the apps assets
 	with open(os.path.join(dest, hooks.app_name, hooks.app_name, "public", ".gitkeep"), "w") as f:
 		f.write("")
 
@@ -339,7 +339,7 @@ requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
-    # "saashq~=15.0.0" # Installed and managed by wrench.
+    # "saashq~=15.0.0" # Installed and managed by bench.
 ]
 
 [build-system]
@@ -347,7 +347,7 @@ requires = ["flit_core >=3.4,<4"]
 build-backend = "flit_core.buildapi"
 
 # These dependencies are only installed when developer mode is enabled
-[tool.wrench.dev-dependencies]
+[tool.bench.dev-dependencies]
 # package_name = "~=1.1.0"
 
 [tool.ruff]
@@ -725,27 +725,27 @@ jobs:
 
       - name: Setup
         run: |
-          pip install saashq-wrench
-          wrench init --skip-redis-config-generation --skip-assets --python "$(which python)" ~/saashq-wrench
+          pip install saashq-bench
+          bench init --skip-redis-config-generation --skip-assets --python "$(which python)" ~/saashq-bench
           mariadb --host 127.0.0.1 --port 3306 -u root -proot -e "SET GLOBAL character_set_server = 'utf8mb4'"
           mariadb --host 127.0.0.1 --port 3306 -u root -proot -e "SET GLOBAL collation_server = 'utf8mb4_unicode_ci'"
 
       - name: Install
-        working-directory: /home/runner/saashq-wrench
+        working-directory: /home/runner/saashq-bench
         run: |
-          wrench get-app {app_name} $GITHUB_WORKSPACE
-          wrench setup requirements --dev
-          wrench new-site --db-root-password root --admin-password admin test_site
-          wrench --site test_site install-app {app_name}
-          wrench build
+          bench get-app {app_name} $GITHUB_WORKSPACE
+          bench setup requirements --dev
+          bench new-site --db-root-password root --admin-password admin test_site
+          bench --site test_site install-app {app_name}
+          bench build
         env:
           CI: 'Yes'
 
       - name: Run Tests
-        working-directory: /home/runner/saashq-wrench
+        working-directory: /home/runner/saashq-bench
         run: |
-          wrench --site test_site set-config allow_tests true
-          wrench --site test_site run-tests --app {app_name}
+          bench --site test_site set-config allow_tests true
+          bench --site test_site run-tests --app {app_name}
         env:
           TYPE: server
 """
@@ -896,12 +896,12 @@ readme_template = """### {app_title}
 
 ### Installation
 
-You can install this app using the [wrench](https://github.com/saashq/wrench) CLI:
+You can install this app using the [bench](https://github.com/saashq/bench) CLI:
 
 ```bash
-cd $PATH_TO_YOUR_WRENCH
-wrench get-app $URL_OF_THIS_REPO --branch {branch_name}
-wrench install-app {app_name}
+cd $PATH_TO_YOUR_BENCH
+bench get-app $URL_OF_THIS_REPO --branch {branch_name}
+bench install-app {app_name}
 ```
 
 ### Contributing

@@ -302,7 +302,7 @@ def restore_backup(
 
 	from saashq.installer import _new_site, is_downgrade, is_partial, validate_database_sql
 
-	# Check for the backup file in the backup directory, as well as the main wrench directory
+	# Check for the backup file in the backup directory, as well as the main bench directory
 	dirs = (f"{site}/private/backups", "..")
 
 	# Try to resolve path to the file if we can't find it directly
@@ -326,7 +326,7 @@ def restore_backup(
 			fg="red",
 		)
 		click.secho(
-			"Use `wrench partial-restore` to restore a partial backup to an existing site.",
+			"Use `bench partial-restore` to restore a partial backup to an existing site.",
 			fg="yellow",
 		)
 		sys.exit(1)
@@ -394,7 +394,7 @@ def partial_restore(context: CliCtxObj, sql_file_path, verbose, encryption_key=N
 		with decrypt_backup(sql_file_path, key):
 			if not is_partial(sql_file_path):
 				click.secho(
-					"Full backup file detected. Use `wrench restore` to restore a Saashq Site.",
+					"Full backup file detected. Use `bench restore` to restore a Saashq Site.",
 					fg="red",
 				)
 				sys.exit(1)
@@ -409,7 +409,7 @@ def partial_restore(context: CliCtxObj, sql_file_path, verbose, encryption_key=N
 	else:
 		if not is_partial(sql_file_path):
 			click.secho(
-				"Full backup file detected. Use `wrench restore` to restore a Saashq Site.",
+				"Full backup file detected. Use `bench restore` to restore a Saashq Site.",
 				fg="red",
 			)
 			sys.exit(1)
@@ -1022,7 +1022,7 @@ def _drop_site(
 				f"Error: The operation has stopped because backup of {site}'s database failed.",
 				f"Reason: {err!s}\n",
 				"Fix the issue and try again.",
-				f"Hint: Use 'wrench drop-site {site} --force' to force the removal of {site}",
+				f"Hint: Use 'bench drop-site {site} --force' to force the removal of {site}",
 			]
 			click.echo("\n".join(messages))
 			sys.exit(1)
@@ -1035,7 +1035,7 @@ def _drop_site(
 	drop_user_and_database(saashq.conf.db_name, saashq.conf.db_user)
 
 	archived_sites_path = archived_sites_path or os.path.join(
-		saashq.utils.get_wrench_path(), "archived", "sites"
+		saashq.utils.get_bench_path(), "archived", "sites"
 	)
 	archived_sites_path = os.path.realpath(archived_sites_path)
 
@@ -1147,7 +1147,7 @@ def set_last_active_for_user(context: CliCtxObj, user=None):
 @click.option("--after-commit")
 @pass_context
 def publish_realtime(context: CliCtxObj, event, message, room, user, doctype, docname, after_commit):
-	"Publish realtime event from wrench"
+	"Publish realtime event from bench"
 	from saashq import publish_realtime
 
 	for site in context.sites:

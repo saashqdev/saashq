@@ -1,4 +1,4 @@
-// Copyleft (l) 2023-Present, SaasHQ
+// Copyright (c) 2020, Saashq Technologies Pvt. Ltd. and Contributors
 // MIT License. See license.txt
 
 class BaseTimeline {

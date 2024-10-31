@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2022, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
 # imports - standard imports
@@ -35,7 +35,7 @@ from saashq.installer import add_to_installed_apps, remove_app
 from saashq.query_builder.utils import db_type_is
 from saashq.tests import IntegrationTestCase, timeout
 from saashq.tests.test_query_builder import run_only_if
-from saashq.utils import add_to_date, get_wrench_path, get_wrench_relative_path, now
+from saashq.utils import add_to_date, get_bench_path, get_bench_relative_path, now
 from saashq.utils.backups import BackupGenerator, fetch_latest_backups
 from saashq.utils.jinja_globals import bundled_asset
 from saashq.utils.scheduler import enable_scheduler, is_scheduler_inactive
@@ -181,7 +181,7 @@ class BaseTestCommands(IntegrationTestCase):
 
 		if not os.path.exists(os.path.join(TEST_SITE, "site_config.json")):
 			cls.execute(
-				"wrench new-site {test_site} "
+				"bench new-site {test_site} "
 				"--admin-password {admin_password} "
 				"--db-root-username {db_root_username} "
 				"--db-root-password {db_root_password} "
@@ -220,23 +220,23 @@ class BaseTestCommands(IntegrationTestCase):
 class TestCommands(BaseTestCommands):
 	def test_execute(self):
 		# test 1: execute a command expecting a numeric output
-		self.execute("wrench --site {site} execute saashq.db.get_database_size")
+		self.execute("bench --site {site} execute saashq.db.get_database_size")
 		self.assertEqual(self.returncode, 0)
 		self.assertIsInstance(float(self.stdout), float)
 
 		# test 2: execute a command accessing a normal attribute
-		self.execute("wrench --site {site} execute saashq.local.site")
+		self.execute("bench --site {site} execute saashq.local.site")
 		self.assertEqual(self.returncode, 0)
 		self.assertIsNotNone(self.stderr)
 
 		# test 3: execute a command expecting an errored output as lacol won't exist
-		self.execute("wrench --site {site} execute saashq.lacol.site")
+		self.execute("bench --site {site} execute saashq.lacol.site")
 		self.assertEqual(self.returncode, 1)
 		self.assertIsNotNone(self.stderr)
 
 		# test 4: execute a command with kwargs
 		self.execute(
-			"wrench --site {site} execute saashq.bold --kwargs '{put_here}'",
+			"bench --site {site} execute saashq.bold --kwargs '{put_here}'",
 			{"put_here": '{"text": "DocType"}'},  # avoid escaping errors
 		)
 		self.assertEqual(self.returncode, 0)
@@ -254,7 +254,7 @@ class TestCommands(BaseTestCommands):
 		site_data = {"test_site": TEST_SITE, **global_config}
 		for key, value in global_config.items():
 			if value:
-				self.execute(f"wrench set-config {key} {value} -g")
+				self.execute(f"bench set-config {key} {value} -g")
 
 		with self.switch_site(TEST_SITE):
 			public_file = saashq.new_doc(
@@ -264,10 +264,10 @@ class TestCommands(BaseTestCommands):
 				"File", file_name=f"test_{saashq.generate_hash()}", content=saashq.generate_hash()
 			).insert()
 
-		# test 1: wrench restore from full backup
-		self.execute("wrench --site {test_site} backup --ignore-backup-conf --with-files", site_data)
+		# test 1: bench restore from full backup
+		self.execute("bench --site {test_site} backup --ignore-backup-conf --with-files", site_data)
 		self.execute(
-			"wrench --site {test_site} execute saashq.utils.backups.fetch_latest_backups",
+			"bench --site {test_site} execute saashq.utils.backups.fetch_latest_backups",
 			site_data,
 		)
 		# Destroy some data and files to verify that they are indeed being restored.
@@ -281,7 +281,7 @@ class TestCommands(BaseTestCommands):
 		backup_data = json.loads(self.stdout)
 		site_data.update(backup_data)
 		self.execute(
-			"wrench --site {test_site} restore {database} --with-public-files {public} --with-private-files {private} ",
+			"bench --site {test_site} restore {database} --with-public-files {public} --with-private-files {private} ",
 			site_data,
 		)
 		self.assertEqual(self.returncode, 0)
@@ -292,14 +292,14 @@ class TestCommands(BaseTestCommands):
 			self.assertTrue(private_file.exists_on_disk())
 
 		# test 2: restore from partial backup
-		self.execute("wrench --site {test_site} backup --exclude 'ToDo'", site_data)
+		self.execute("bench --site {test_site} backup --exclude 'ToDo'", site_data)
 		site_data.update({"kw": "\"{'partial':True}\""})
 		self.execute(
-			"wrench --site {test_site} execute" " saashq.utils.backups.fetch_latest_backups --kwargs {kw}",
+			"bench --site {test_site} execute" " saashq.utils.backups.fetch_latest_backups --kwargs {kw}",
 			site_data,
 		)
 		site_data.update({"database": json.loads(self.stdout)["database"]})
-		self.execute("wrench --site {test_site} restore {database}", site_data)
+		self.execute("bench --site {test_site} restore {database}", site_data)
 		self.assertEqual(self.returncode, 1)
 
 	def test_partial_restore(self):
@@ -317,25 +317,25 @@ class TestCommands(BaseTestCommands):
 
 		# check if todos exist, create a partial backup and see if the state is the same after restore
 		self.assertIsNot(todo_count, 0)
-		self.execute("wrench --site {site} backup --only 'ToDo'")
+		self.execute("bench --site {site} backup --only 'ToDo'")
 		db_path = fetch_latest_backups(partial=True)["database"]
 		self.assertTrue("partial" in db_path)
 
 		saashq.db.sql_ddl("DROP TABLE IF EXISTS `tabToDo`")
 		saashq.db.commit()
 
-		self.execute("wrench --site {site} partial-restore {path}", {"path": db_path})
+		self.execute("bench --site {site} partial-restore {path}", {"path": db_path})
 		self.assertEqual(self.returncode, 0)
 		self.assertEqual(saashq.db.count("ToDo"), todo_count)
 
 	def test_recorder(self):
 		saashq.recorder.stop()
 
-		self.execute("wrench --site {site} start-recording")
+		self.execute("bench --site {site} start-recording")
 		saashq.local.cache = {}
 		self.assertEqual(saashq.recorder.status(), True)
 
-		self.execute("wrench --site {site} stop-recording")
+		self.execute("bench --site {site} stop-recording")
 		saashq.local.cache = {}
 		self.assertEqual(saashq.recorder.status(), False)
 
@@ -345,23 +345,23 @@ class TestCommands(BaseTestCommands):
 		add_to_installed_apps(app)
 
 		# check: confirm that add_to_installed_apps added the app in the default
-		self.execute("wrench --site {site} list-apps")
+		self.execute("bench --site {site} list-apps")
 		self.assertIn(app, self.stdout)
 
 		# test 1: remove app from installed_apps global default
-		self.execute("wrench --site {site} remove-from-installed-apps {app}", {"app": app})
+		self.execute("bench --site {site} remove-from-installed-apps {app}", {"app": app})
 		self.assertEqual(self.returncode, 0)
-		self.execute("wrench --site {site} list-apps")
+		self.execute("bench --site {site} list-apps")
 		self.assertNotIn(app, self.stdout)
 
 	def test_list_apps(self):
 		# test 1: sanity check for command
-		self.execute("wrench --site all list-apps")
+		self.execute("bench --site all list-apps")
 		self.assertIsNotNone(self.returncode)
 		self.assertIsInstance(self.stdout or self.stderr, str)
 
 		# test 2: bare functionality for single site
-		self.execute("wrench --site {site} list-apps")
+		self.execute("bench --site {site} list-apps")
 		self.assertEqual(self.returncode, 0)
 		list_apps = {_x.split(maxsplit=1)[0] for _x in self.stdout.split("\n")}
 		doctype = saashq.get_single("Installed Applications").installed_applications
@@ -372,89 +372,89 @@ class TestCommands(BaseTestCommands):
 		self.assertSetEqual(list_apps, installed_apps)
 
 		# test 3: parse json format
-		self.execute("wrench --site {site} list-apps --format json")
+		self.execute("bench --site {site} list-apps --format json")
 		self.assertEqual(self.returncode, 0)
 		self.assertIsInstance(json.loads(self.stdout), dict)
 
-		self.execute("wrench --site {site} list-apps -f json")
+		self.execute("bench --site {site} list-apps -f json")
 		self.assertEqual(self.returncode, 0)
 		self.assertIsInstance(json.loads(self.stdout), dict)
 
 	def test_show_config(self):
 		# test 1: sanity check for command
-		self.execute("wrench --site all show-config")
+		self.execute("bench --site all show-config")
 		self.assertEqual(self.returncode, 0)
 
 		# test 2: test keys in table text
 		self.execute(
-			"wrench --site {site} set-config test_key '{second_order}' --parse",
+			"bench --site {site} set-config test_key '{second_order}' --parse",
 			{"second_order": json.dumps({"test_key": "test_value"})},
 		)
-		self.execute("wrench --site {site} show-config")
+		self.execute("bench --site {site} show-config")
 		self.assertEqual(self.returncode, 0)
 		self.assertIn("test_key.test_key", self.stdout.split())
 		self.assertIn("test_value", self.stdout.split())
 
 		# test 3: parse json format
-		self.execute("wrench --site all show-config --format json")
+		self.execute("bench --site all show-config --format json")
 		self.assertEqual(self.returncode, 0)
 		self.assertIsInstance(json.loads(self.stdout), dict)
 
-		self.execute("wrench --site {site} show-config --format json")
+		self.execute("bench --site {site} show-config --format json")
 		self.assertIsInstance(json.loads(self.stdout), dict)
 
-		self.execute("wrench --site {site} show-config -f json")
+		self.execute("bench --site {site} show-config -f json")
 		self.assertIsInstance(json.loads(self.stdout), dict)
 
-	def test_get_wrench_relative_path(self):
-		wrench_path = get_wrench_path()
-		test1_path = os.path.join(wrench_path, "test1.txt")
-		test2_path = os.path.join(wrench_path, "sites", "test2.txt")
+	def test_get_bench_relative_path(self):
+		bench_path = get_bench_path()
+		test1_path = os.path.join(bench_path, "test1.txt")
+		test2_path = os.path.join(bench_path, "sites", "test2.txt")
 
 		with open(test1_path, "w+") as test1:
 			test1.write("asdf")
 		with open(test2_path, "w+") as test2:
 			test2.write("asdf")
 
-		self.assertTrue("test1.txt" in get_wrench_relative_path("test1.txt"))
-		self.assertTrue("sites/test2.txt" in get_wrench_relative_path("test2.txt"))
+		self.assertTrue("test1.txt" in get_bench_relative_path("test1.txt"))
+		self.assertTrue("sites/test2.txt" in get_bench_relative_path("test2.txt"))
 		with self.assertRaises(SystemExit):
-			get_wrench_relative_path("test3.txt")
+			get_bench_relative_path("test3.txt")
 
 		os.remove(test1_path)
 		os.remove(test2_path)
 
 	def test_saashq_site_env(self):
 		os.putenv("SAASHQ_SITE", saashq.local.site)
-		self.execute("wrench execute saashq.ping")
+		self.execute("bench execute saashq.ping")
 		self.assertEqual(self.returncode, 0)
 		self.assertIn("pong", self.stdout)
 
 	def test_version(self):
-		self.execute("wrench version")
+		self.execute("bench version")
 		self.assertEqual(self.returncode, 0)
 
 		for output in ["legacy", "plain", "table", "json"]:
-			self.execute(f"wrench version -f {output}")
+			self.execute(f"bench version -f {output}")
 			self.assertEqual(self.returncode, 0)
 
-		self.execute("wrench version -f invalid")
+		self.execute("bench version -f invalid")
 		self.assertEqual(self.returncode, 2)
 
 	def test_set_password(self):
 		from saashq.utils.password import check_password
 
-		self.execute("wrench --site {site} set-password Administrator test1")
+		self.execute("bench --site {site} set-password Administrator test1")
 		self.assertEqual(self.returncode, 0)
 		self.assertEqual(check_password("Administrator", "test1"), "Administrator")
 
-		self.execute("wrench --site {site} set-admin-password test2")
+		self.execute("bench --site {site} set-admin-password test2")
 		self.assertEqual(self.returncode, 0)
 		self.assertEqual(check_password("Administrator", "test2"), "Administrator")
 
 		# Reset it back to original password
 		original_password = saashq.conf.admin_password or "admin"
-		self.execute("wrench --site {site} set-admin-password %s" % original_password)
+		self.execute("bench --site {site} set-admin-password %s" % original_password)
 		self.assertEqual(self.returncode, 0)
 		self.assertEqual(check_password("Administrator", original_password), "Administrator")
 
@@ -462,12 +462,12 @@ class TestCommands(BaseTestCommands):
 		not (saashq.conf.root_password and saashq.conf.admin_password and saashq.conf.db_type == "mariadb"),
 		"DB Root password and Admin password not set in config",
 	)
-	def test_wrench_drop_site_should_archive_site(self):
+	def test_bench_drop_site_should_archive_site(self):
 		# TODO: Make this test postgres compatible
 		site = TEST_SITE
 
 		self.execute(
-			f"wrench new-site {site} --force --verbose "
+			f"bench new-site {site} --force --verbose "
 			f"--admin-password {saashq.conf.admin_password} "
 			f"--db-root-username {saashq.conf.root_login} "
 			f"--db-root-password {saashq.conf.root_password} "
@@ -476,16 +476,16 @@ class TestCommands(BaseTestCommands):
 		self.assertEqual(self.returncode, 0)
 
 		self.execute(
-			f"wrench drop-site {site} --force "
+			f"bench drop-site {site} --force "
 			f"--db-root-username {saashq.conf.root_login} "
 			f"--db-root-password {saashq.conf.root_password} "
 		)
 		self.assertEqual(self.returncode, 0)
 
-		wrench_path = get_wrench_path()
-		site_directory = os.path.join(wrench_path, f"sites/{site}")
+		bench_path = get_bench_path()
+		site_directory = os.path.join(bench_path, f"sites/{site}")
 		self.assertFalse(os.path.exists(site_directory))
-		archive_directory = os.path.join(wrench_path, f"archived/sites/{site}")
+		archive_directory = os.path.join(bench_path, f"archived/sites/{site}")
 		self.assertTrue(os.path.exists(archive_directory))
 
 	@skipIf(
@@ -493,9 +493,9 @@ class TestCommands(BaseTestCommands):
 		"DB Root password and Admin password not set in config",
 	)
 	def test_force_install_app(self):
-		if not os.path.exists(os.path.join(get_wrench_path(), f"sites/{TEST_SITE}")):
+		if not os.path.exists(os.path.join(get_bench_path(), f"sites/{TEST_SITE}")):
 			self.execute(
-				f"wrench new-site {TEST_SITE} --verbose "
+				f"bench new-site {TEST_SITE} --verbose "
 				f"--admin-password {saashq.conf.admin_password} "
 				f"--db-root-username {saashq.conf.root_login} "
 				f"--db-root-password {saashq.conf.root_password} "
@@ -505,22 +505,22 @@ class TestCommands(BaseTestCommands):
 		app_name = "saashq"
 
 		# set admin password in site_config as when saashq force installs, we don't have the conf
-		self.execute(f"wrench --site {TEST_SITE} set-config admin_password {saashq.conf.admin_password}")
+		self.execute(f"bench --site {TEST_SITE} set-config admin_password {saashq.conf.admin_password}")
 
 		# try installing the saashq_docs app again on test site
-		self.execute(f"wrench --site {TEST_SITE} install-app {app_name}")
+		self.execute(f"bench --site {TEST_SITE} install-app {app_name}")
 		self.assertIn(f"{app_name} already installed", self.stdout)
 		self.assertEqual(self.returncode, 0)
 
 		# force install saashq_docs app on the test site
-		self.execute(f"wrench --site {TEST_SITE} install-app {app_name} --force")
+		self.execute(f"bench --site {TEST_SITE} install-app {app_name} --force")
 		self.assertIn(f"Installing {app_name}", self.stdout)
 		self.assertEqual(self.returncode, 0)
 
 	def test_set_global_conf(self):
 		key = "answer"
 		value = "42"
-		self.execute(f"wrench set-config {key} {value} -g")
+		self.execute(f"bench set-config {key} {value} -g")
 		conf = saashq.get_site_config()
 
 		self.assertEqual(conf[key], value)
@@ -539,7 +539,7 @@ class TestCommands(BaseTestCommands):
 			"db_root_password": saashq.conf.root_password or "",
 		}
 		self.execute(
-			"wrench new-site {new_site} --force --verbose "
+			"bench new-site {new_site} --force --verbose "
 			"--admin-password {admin_password} "
 			"--db-root-username {db_root_username} "
 			"--db-root-password {db_root_password} "
@@ -549,13 +549,13 @@ class TestCommands(BaseTestCommands):
 			kwargs,
 		)
 		self.assertEqual(self.returncode, 0)
-		self.execute("wrench --site {new_site} show-config --format json", kwargs)
+		self.execute("bench --site {new_site} show-config --format json", kwargs)
 		self.assertEqual(self.returncode, 0)
 		config = json.loads(self.stdout)
 		self.assertEqual(config[site]["db_user"], user)
 		self.assertEqual(config[site]["db_password"], password)
 		self.execute(
-			"wrench drop-site {new_site} --force "
+			"bench drop-site {new_site} --force "
 			"--db-root-username {db_root_username} "
 			"--db-root-password {db_root_password} ",
 			kwargs,
@@ -586,7 +586,7 @@ class TestCommands(BaseTestCommands):
 			"db_root_password": saashq.conf.root_password,
 		}
 		self.execute(
-			"wrench new-site {new_site} --force --verbose "
+			"bench new-site {new_site} --force --verbose "
 			"--admin-password {admin_password} "
 			"--db-type {db_type} "
 			"--db-user {db_user} "
@@ -596,13 +596,13 @@ class TestCommands(BaseTestCommands):
 			kwargs,
 		)
 		self.assertEqual(self.returncode, 0)
-		self.execute("wrench --site {new_site} show-config --format json", kwargs)
+		self.execute("bench --site {new_site} show-config --format json", kwargs)
 		self.assertEqual(self.returncode, 0)
 		config = json.loads(self.stdout)
 		self.assertEqual(config[site]["db_user"], user)
 		self.assertEqual(config[site]["db_password"], password)
 		self.execute(
-			"wrench drop-site {new_site} --force "
+			"bench drop-site {new_site} --force "
 			"--db-root-username {db_root_username} "
 			"--db-root-password {db_root_password} ",
 			kwargs,
@@ -640,7 +640,7 @@ class TestBackups(BaseTestCommands):
 	def test_backup_no_options(self):
 		"""Take a backup without any options"""
 		before_backup = fetch_latest_backups(partial=True)
-		self.execute("wrench --site {site} backup")
+		self.execute("bench --site {site} backup")
 		after_backup = fetch_latest_backups(partial=True)
 
 		self.assertEqual(self.returncode, 0)
@@ -653,7 +653,7 @@ class TestBackups(BaseTestCommands):
 	)
 	def test_backup_extract_restore(self):
 		"""Restore a backup after extracting"""
-		self.execute("wrench --site {site} backup")
+		self.execute("bench --site {site} backup")
 		self.assertEqual(self.returncode, 0)
 		backup = fetch_latest_backups()
 		self.execute(f"gunzip {backup['database']}")
@@ -661,7 +661,7 @@ class TestBackups(BaseTestCommands):
 		backup_sql = backup["database"].replace(".gz", "")
 		assert os.path.isfile(backup_sql)
 		self.execute(
-			"wrench --site {site} restore {backup_sql}",
+			"bench --site {site} restore {backup_sql}",
 			{
 				"backup_sql": backup_sql,
 			},
@@ -674,11 +674,11 @@ class TestBackups(BaseTestCommands):
 	)
 	def test_old_backup_restore(self):
 		"""Restore a backup after extracting"""
-		self.execute("wrench --site {site} backup --old-backup-metadata")
+		self.execute("bench --site {site} backup --old-backup-metadata")
 		self.assertEqual(self.returncode, 0)
 		backup = fetch_latest_backups()
 		self.execute(
-			"wrench --site {site} restore {database}",
+			"bench --site {site} restore {database}",
 			backup,
 		)
 		self.assertEqual(self.returncode, 0)
@@ -700,7 +700,7 @@ class TestBackups(BaseTestCommands):
 	def test_backup_with_files(self):
 		"""Take a backup with files (--with-files)"""
 		before_backup = fetch_latest_backups()
-		self.execute("wrench --site {site} backup --with-files")
+		self.execute("bench --site {site} backup --with-files")
 		after_backup = fetch_latest_backups()
 
 		self.assertEqual(self.returncode, 0)
@@ -718,7 +718,7 @@ class TestBackups(BaseTestCommands):
 
 		tables_before = saashq.db.get_tables(cached=False)
 
-		self.execute("wrench --site {site} clear-log-table --days=30 --doctype='Error Log'")
+		self.execute("bench --site {site} clear-log-table --days=30 --doctype='Error Log'")
 		self.assertEqual(self.returncode, 0)
 		saashq.db.commit()
 
@@ -730,7 +730,7 @@ class TestBackups(BaseTestCommands):
 	def test_backup_with_custom_path(self):
 		"""Backup to a custom path (--backup-path)"""
 		backup_path = os.path.join(self.home, "backups")
-		self.execute("wrench --site {site} backup --backup-path {backup_path}", {"backup_path": backup_path})
+		self.execute("bench --site {site} backup --backup-path {backup_path}", {"backup_path": backup_path})
 
 		self.assertEqual(self.returncode, 0)
 		self.assertTrue(os.path.exists(backup_path))
@@ -749,7 +749,7 @@ class TestBackups(BaseTestCommands):
 		}
 
 		self.execute(
-			"""wrench
+			"""bench
 			--site {site} backup --with-files
 			--backup-path-db {db_path}
 			--backup-path-files {files_path}
@@ -764,23 +764,23 @@ class TestBackups(BaseTestCommands):
 
 	def test_backup_compress_files(self):
 		"""Take a compressed backup (--compress)"""
-		self.execute("wrench --site {site} backup --with-files --compress")
+		self.execute("bench --site {site} backup --with-files --compress")
 		self.assertEqual(self.returncode, 0)
 		compressed_files = glob(f"{self.site_backup_path}/*.tgz")
 		self.assertGreater(len(compressed_files), 0)
 
 	def test_backup_verbose(self):
 		"""Take a verbose backup (--verbose)"""
-		self.execute("wrench --site {site} backup --verbose")
+		self.execute("bench --site {site} backup --verbose")
 		self.assertEqual(self.returncode, 0)
 
 	def test_backup_only_specific_doctypes(self):
 		"""Take a backup with (include) backup options set in the site config `saashq.conf.backup.includes`"""
 		self.execute(
-			"wrench --site {site} set-config backup '{includes}' --parse",
+			"bench --site {site} set-config backup '{includes}' --parse",
 			{"includes": json.dumps(self.backup_map["includes"])},
 		)
-		self.execute("wrench --site {site} backup --verbose")
+		self.execute("bench --site {site} backup --verbose")
 		self.assertEqual(self.returncode, 0)
 		database = fetch_latest_backups(partial=True)["database"]
 		self.assertEqual([], missing_in_backup(self.backup_map["includes"]["includes"], database))
@@ -789,10 +789,10 @@ class TestBackups(BaseTestCommands):
 		"""Take a backup with (exclude) backup options set (`saashq.conf.backup.excludes`, `--exclude`)"""
 		# test 1: take a backup with saashq.conf.backup.excludes
 		self.execute(
-			"wrench --site {site} set-config backup '{excludes}' --parse",
+			"bench --site {site} set-config backup '{excludes}' --parse",
 			{"excludes": json.dumps(self.backup_map["excludes"])},
 		)
-		self.execute("wrench --site {site} backup --verbose")
+		self.execute("bench --site {site} backup --verbose")
 		self.assertEqual(self.returncode, 0)
 		database = fetch_latest_backups(partial=True)["database"]
 		self.assertFalse(exists_in_backup(self.backup_map["excludes"]["excludes"], database))
@@ -800,7 +800,7 @@ class TestBackups(BaseTestCommands):
 
 		# test 2: take a backup with --exclude
 		self.execute(
-			"wrench --site {site} backup --exclude '{exclude}'",
+			"bench --site {site} backup --exclude '{exclude}'",
 			{"exclude": ",".join(self.backup_map["excludes"]["excludes"])},
 		)
 		self.assertEqual(self.returncode, 0)
@@ -810,7 +810,7 @@ class TestBackups(BaseTestCommands):
 	def test_selective_backup_priority_resolution(self):
 		"""Take a backup with conflicting backup options set (`saashq.conf.excludes`, `--include`)"""
 		self.execute(
-			"wrench --site {site} backup --include '{include}'",
+			"bench --site {site} backup --include '{include}'",
 			{"include": ",".join(self.backup_map["includes"]["includes"])},
 		)
 		self.assertEqual(self.returncode, 0)
@@ -819,7 +819,7 @@ class TestBackups(BaseTestCommands):
 
 	def test_dont_backup_conf(self):
 		"""Take a backup ignoring saashq.conf.backup settings (with --ignore-backup-conf option)"""
-		self.execute("wrench --site {site} backup --ignore-backup-conf")
+		self.execute("bench --site {site} backup --ignore-backup-conf")
 		self.assertEqual(self.returncode, 0)
 		database = fetch_latest_backups()["database"]
 		self.assertEqual([], missing_in_backup(self.backup_map["excludes"]["excludes"], database))
@@ -887,7 +887,7 @@ class TestSiteMigration(BaseTestCommands):
 class TestAddNewUser(BaseTestCommands):
 	def test_create_user(self):
 		self.execute(
-			"wrench --site {site} add-user test@gmail.com --first-name test --last-name test --password 123 --user-type 'System User' --add-role 'Accounts User' --add-role 'Sales User'"
+			"bench --site {site} add-user test@gmail.com --first-name test --last-name test --password 123 --user-type 'System User' --add-role 'Accounts User' --add-role 'Sales User'"
 		)
 		self.assertEqual(self.returncode, 0)
 		user = saashq.get_doc("User", "test@gmail.com")
@@ -895,7 +895,7 @@ class TestAddNewUser(BaseTestCommands):
 		self.assertEqual({"Accounts User", "Sales User"}, roles)
 
 
-class TestWrenchBuild(BaseTestCommands):
+class TestBenchBuild(BaseTestCommands):
 	def test_build_assets_size_check(self):
 		with cli(saashq.commands.utils.build, "--force --production --app saashq") as result:
 			self.assertEqual(result.exit_code, 0)
@@ -923,7 +923,7 @@ class TestWrenchBuild(BaseTestCommands):
 class TestDBUtils(BaseTestCommands):
 	def test_db_add_index(self):
 		field = "reset_password_key"
-		self.execute("wrench --site {site} add-database-index --doctype User --column " + field, {})
+		self.execute("bench --site {site} add-database-index --doctype User --column " + field, {})
 		saashq.db.rollback()
 		index_name = saashq.db.get_index_name((field,))
 		self.assertTrue(saashq.db.has_index("tabUser", index_name))
@@ -945,7 +945,7 @@ class TestSchedulerUtils(BaseTestCommands):
 
 
 class TestCommandUtils(IntegrationTestCase):
-	def test_wrench_helper(self):
+	def test_bench_helper(self):
 		from saashq.utils.wrench_helper import get_app_groups
 
 		app_groups = get_app_groups()
@@ -956,12 +956,12 @@ class TestCommandUtils(IntegrationTestCase):
 class TestDBCli(BaseTestCommands):
 	@timeout(10)
 	def test_db_cli(self):
-		self.execute("wrench --site {site} db-console", kwargs={"cmd_input": rb"\q"})
+		self.execute("bench --site {site} db-console", kwargs={"cmd_input": rb"\q"})
 		self.assertEqual(self.returncode, 0)
 
 	@run_only_if(db_type_is.MARIADB)
 	def test_db_cli_with_sql(self):
-		self.execute("wrench --site {site} db-console -e 'select 1'")
+		self.execute("bench --site {site} db-console -e 'select 1'")
 		self.assertEqual(self.returncode, 0)
 		self.assertIn("1", self.stdout)
 
@@ -979,11 +979,11 @@ class TestSchedulerCLI(BaseTestCommands):
 			enable_scheduler()
 
 	def test_scheduler_status(self):
-		self.execute("wrench --site {site} scheduler status")
+		self.execute("bench --site {site} scheduler status")
 		self.assertEqual(self.returncode, 0)
 		self.assertRegex(self.stdout, r"Scheduler is (disabled|enabled) for site .*")
 
-		self.execute("wrench --site {site} scheduler status -f json")
+		self.execute("bench --site {site} scheduler status -f json")
 		parsed_output = saashq.parse_json(self.stdout)
 		self.assertEqual(self.returncode, 0)
 		self.assertIsInstance(parsed_output, dict)
@@ -991,26 +991,26 @@ class TestSchedulerCLI(BaseTestCommands):
 		self.assertIn("site", parsed_output)
 
 	def test_scheduler_enable_disable(self):
-		self.execute("wrench --site {site} scheduler disable")
+		self.execute("bench --site {site} scheduler disable")
 		self.assertEqual(self.returncode, 0)
 		self.assertRegex(self.stdout, r"Scheduler is disabled for site .*")
 
-		self.execute("wrench --site {site} scheduler enable")
+		self.execute("bench --site {site} scheduler enable")
 		self.assertEqual(self.returncode, 0)
 		self.assertRegex(self.stdout, r"Scheduler is enabled for site .*")
 
 	def test_scheduler_pause_resume(self):
-		self.execute("wrench --site {site} scheduler pause")
+		self.execute("bench --site {site} scheduler pause")
 		self.assertEqual(self.returncode, 0)
 		self.assertRegex(self.stdout, r"Scheduler is paused for site .*")
 
-		self.execute("wrench --site {site} scheduler resume")
+		self.execute("bench --site {site} scheduler resume")
 		self.assertEqual(self.returncode, 0)
 		self.assertRegex(self.stdout, r"Scheduler is resumed for site .*")
 
 
 class TestCLIImplementation(BaseTestCommands):
 	def test_missing_commands(self):
-		self.execute("wrench --site {site} migrat")
+		self.execute("bench --site {site} migrat")
 		self.assertNotEqual(self.returncode, 0)
 		self.assertRegex(self.stderr, r"No such.*migrat.*migrate")

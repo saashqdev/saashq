@@ -1,4 +1,4 @@
-# Copyleft (l) 2023-Present, SaasHQ
+# Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
 # License: MIT. See LICENSE
 
 import functools
@@ -476,6 +476,9 @@ if sentry_dsn := os.getenv("SAASHQ_SENTRY_DSN"):
 		kwargs["traces_sample_rate"] = float(tracing_sample_rate)
 		application = SentryWsgiMiddleware(application)
 
+	if profiling_sample_rate := os.getenv("SENTRY_PROFILING_SAMPLE_RATE"):
+		kwargs["profiles_sample_rate"] = float(profiling_sample_rate)
+
 	sentry_sdk.init(
 		dsn=sentry_dsn,
 		before_send=before_send,
@@ -556,7 +559,7 @@ re.purge()
 # Calling gc.freeze() moves all the objects imported so far into permanant generation and hence
 # doesn't mutate `PyGC_Head`
 #
-# Refer to issue for more info: https://github.com/saashqdev/saashq/issues/18927
+# Refer to issue for more info: https://github.com/saashq/saashq/issues/18927
 if saashq._tune_gc:
 	gc.collect()  # clean up any garbage created so far before freeze
 	gc.freeze()
