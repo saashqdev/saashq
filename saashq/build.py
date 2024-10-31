@@ -84,7 +84,7 @@ def get_assets_link(saashq_head) -> str:
 
 	if tag:
 		# if tag exists, download assets from github release
-		url = f"https://github.com/saashqdev/saashq/releases/download/{tag}/assets.tar.gz"
+		url = f"https://github.com/saashqdev/saashq/releases/tag/{tag}/assets.tar.gz"
 	else:
 		url = f"http://assets.saashqframework.com/{saashq_head}.tar.gz"
 
