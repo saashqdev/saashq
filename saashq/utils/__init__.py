@@ -1,4 +1,4 @@
-# Copyright (c) 2022, Saashq Technologies Pvt. Ltd. and Contributors
+# Copyright (c) 2023-Present, SaasHQ
 # License: MIT. See LICENSE
 
 import functools

@@ -1,4 +1,4 @@
-// Copyright (c) 2020, Saashq Technologies Pvt. Ltd. and Contributors
+// Copyright (c) 2023-Present, SaasHQ
 // MIT License. See license.txt
 import BaseTimeline from "./base_timeline";
 import {

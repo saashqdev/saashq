@@ -1,4 +1,4 @@
-// Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
+// Copyright (c) 2023-Present, SaasHQ
 // MIT License. See license.txt
 
 // library to mange assets (js, css, models, html) etc in the app.

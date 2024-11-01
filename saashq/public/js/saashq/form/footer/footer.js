@@ -1,4 +1,4 @@
-// Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors
+// Copyright (c) 2023-Present, SaasHQ
 // MIT License. See license.txt
 import FormTimeline from "./form_timeline";
 saashq.ui.form.Footer = class FormFooter {

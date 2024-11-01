@@ -1,4 +1,4 @@
-# Copyright (c) 2015, Saashq Technologies Pvt. Ltd. and Contributors and Contributors
+# Copyright (c) 2023-Present, SaasHQ and Contributors
 # License: MIT. See LICENSE
 
 import saashq
