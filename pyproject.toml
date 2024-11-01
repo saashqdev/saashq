@@ -1,7 +1,7 @@
 [project]
 name = "saashq"
 authors = [
-    { name = "Saashq Technologies Pvt Ltd", email = "developers@saashq.io"}
+    { name = "SaasHQ", email = "dev@saashq.org"}
 ]
 description = "Metadata driven, full-stack low code web framework"
 requires-python = ">=3.10,<3.13"

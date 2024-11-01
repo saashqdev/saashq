@@ -958,9 +958,9 @@ class TestLazyLoader(IntegrationTestCase):
 
 class TestIdenticon(IntegrationTestCase):
 	def test_get_gravatar(self):
-		# developers@saashq.io has a gravatar linked so str URL will be returned
+		# dev@saashq.org has a gravatar linked so str URL will be returned
 		saashq.flags.in_test = False
-		gravatar_url = get_gravatar("developers@saashq.io")
+		gravatar_url = get_gravatar("dev@saashq.org")
 		saashq.flags.in_test = True
 		self.assertIsInstance(gravatar_url, str)
 		self.assertTrue(gravatar_url.startswith("http"))

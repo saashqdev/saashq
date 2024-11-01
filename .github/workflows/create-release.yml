@@ -28,7 +28,7 @@ jobs:
           GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
           GIT_AUTHOR_NAME: "Saashq PR Bot"
-          GIT_AUTHOR_EMAIL: "developers@saashq.io"
+          GIT_AUTHOR_EMAIL: "dev@saashq.org"
           GIT_COMMITTER_NAME: "Saashq PR Bot"
-          GIT_COMMITTER_EMAIL: "developers@saashq.io"
+          GIT_COMMITTER_EMAIL: "dev@saashq.org"
         run: npx semantic-release

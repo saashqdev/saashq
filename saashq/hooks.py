@@ -11,7 +11,7 @@ app_logo_url = "/assets/saashq/images/saashq-framework-logo.svg"
 develop_version = "15.x.x-develop"
 app_home = "/app/build"
 
-app_email = "developers@saashq.io"
+app_email = "dev@saashq.org"
 
 before_install = "saashq.utils.install.before_install"
 after_install = "saashq.utils.install.after_install"
