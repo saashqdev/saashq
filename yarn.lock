@@ -232,9 +232,9 @@
     lodash "^4.17.5"
     sortablejs "^1.7.0"
 
-"@frappe/esbuild-plugin-postcss2@^0.1.5":
+"@saashq/esbuild-plugin-postcss2@^0.1.5":
   version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@frappe/esbuild-plugin-postcss2/-/esbuild-plugin-postcss2-0.1.5.tgz#9786f6898dec1ceb0654bcd33289815725f00a91"
+  resolved "https://registry.yarnpkg.com/@saashq/esbuild-plugin-postcss2/-/esbuild-plugin-postcss2-0.1.5.tgz#9786f6898dec1ceb0654bcd33289815725f00a91"
   integrity sha512-a+i6GWmCF3f+2vn3VMCD0tvGMr38Zzotrqz0C8Yt2tsWyYXRxUJVWDP3vPsQ2mZDTZ4MYbxs635QwX9Duac31w==
   dependencies:
     autoprefixer "^10.2.5"
