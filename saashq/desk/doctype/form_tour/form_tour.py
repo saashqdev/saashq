@@ -1,4 +1,4 @@
-# Copyright (c) 2021, Saashq Technologies and contributors
+# Copyright (c) 2023-Present, SaasHQ
 # License: MIT. See LICENSE
 
 import json

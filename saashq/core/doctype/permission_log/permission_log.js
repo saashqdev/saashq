@@ -1,4 +1,4 @@
-// Copyright (c) 2022, Saashq Technologies and contributors
+// Copyright (c) 2023-Present, SaasHQ
 // For license information, please see license.txt
 
 saashq.ui.form.on("Permission Log", {
