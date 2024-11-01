@@ -1,5 +1,5 @@
 {
-  "name": "saashq-framework",
+  "name": "saashq",
   "scripts": {
     "build": "node esbuild",
     "production": "node esbuild --production",
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/saashqdev/saashq.git"
   },
-  "author": "Saashq Technologies Pvt. Ltd.",
+  "author": "SaasHQ",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/saashqdev/saashq/issues"
