@@ -8,7 +8,7 @@ import click
 
 import saashq
 from saashq import _
-from saashq.commands import get_site, pass_context
+from saashq.orgmands import get_site, pass_context
 from saashq.coverage import CodeCoverage
 from saashq.exceptions import SiteNotSpecifiedError
 from saashq.utils import cint, update_progress_bar

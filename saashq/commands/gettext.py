@@ -1,6 +1,6 @@
 import click
 
-from saashq.commands import pass_context
+from saashq.orgmands import pass_context
 from saashq.exceptions import SiteNotSpecifiedError
 from saashq.utils.wrench_helper import CliCtxObj
 

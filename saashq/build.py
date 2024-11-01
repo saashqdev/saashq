@@ -84,9 +84,9 @@ def get_assets_link(saashq_head) -> str:
 
 	if tag:
 		# if tag exists, download assets from github release
-		url = f"https://github.com/saashqdev/saashq/releases/download/{tag}/assets.tar.gz"
+		url = f"https://github.com/saashqdev/saashq/releases/tag/{tag}/assets.tar.gz"
 	else:
-		url = f"https://github.com/saashqdev/saashq/releases/download/{tag}/assets.tar.gz"
+		url = f"https://github.com/saashqdev/saashq/releases/tag/{tag}/assets.tar.gz"
 
 	if not requests.head(url):
 		reference = f"Release {tag}" if tag else f"Commit {saashq_head}"
@@ -254,7 +254,7 @@ def bundle(
 
 	check_node_executable()
 	saashq_app_path = saashq.get_app_source_path("saashq")
-	saashq.commands.popen(command, cwd=saashq_app_path, env=get_node_env(), raise_err=True)
+	saashq.orgmands.popen(command, cwd=saashq_app_path, env=get_node_env(), raise_err=True)
 
 
 def watch(apps=None):
@@ -272,7 +272,7 @@ def watch(apps=None):
 
 	check_node_executable()
 	saashq_app_path = saashq.get_app_source_path("saashq")
-	saashq.commands.popen(command, cwd=saashq_app_path, env=get_node_env())
+	saashq.orgmands.popen(command, cwd=saashq_app_path, env=get_node_env())
 
 
 def check_node_executable():

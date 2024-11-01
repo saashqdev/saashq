@@ -414,14 +414,14 @@ class TestValidationUtils(IntegrationTestCase):
 		self.assertFalse(validate_email_address(None))
 
 		# Valid addresses
-		self.assertTrue(validate_email_address("someone@saashq.com"))
-		self.assertTrue(validate_email_address("someone@saashq.com, anyone@saashq.io"))
-		self.assertTrue(validate_email_address("test%201@saashq.com"))
+		self.assertTrue(validate_email_address("someone@saashq.org"))
+		self.assertTrue(validate_email_address("someone@saashq.org, anyone@saashq.io"))
+		self.assertTrue(validate_email_address("test%201@saashq.org"))
 
 		# Invalid address
 		self.assertFalse(validate_email_address("someone"))
 		self.assertFalse(validate_email_address("someone@----.com"))
-		self.assertFalse(validate_email_address("test 1@saashq.com"))
+		self.assertFalse(validate_email_address("test 1@saashq.org"))
 		self.assertFalse(validate_email_address("test@example.com test2@example.com,undisclosed-recipient"))
 
 		# Invalid with throw
@@ -432,10 +432,10 @@ class TestValidationUtils(IntegrationTestCase):
 			throw=True,
 		)
 
-		self.assertEqual(validate_email_address("Some%20One@saashq.com"), "Some%20One@saashq.com")
+		self.assertEqual(validate_email_address("Some%20One@saashq.org"), "Some%20One@saashq.org")
 		self.assertEqual(
-			validate_email_address("erp+Job%20Applicant=JA00004@saashq.com"),
-			"erp+Job%20Applicant=JA00004@saashq.com",
+			validate_email_address("erp+Job%20Applicant=JA00004@saashq.org"),
+			"erp+Job%20Applicant=JA00004@saashq.org",
 		)
 
 	def test_valid_phone(self):

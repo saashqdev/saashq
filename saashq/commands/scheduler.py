@@ -3,7 +3,7 @@ import sys
 import click
 
 import saashq
-from saashq.commands import get_site, pass_context
+from saashq.orgmands import get_site, pass_context
 from saashq.exceptions import SiteNotSpecifiedError
 from saashq.utils.wrench_helper import CliCtxObj
 
