@@ -1,6 +1,6 @@
 // Copyright (c) 2023-Present, SaasHQ
 // MIT License. See license.txt
-import DataTable from "@saashq/datatable";
+import DataTable from "frappe-datatable";
 
 // Expose DataTable globally to allow customizations.
 window.DataTable = DataTable;

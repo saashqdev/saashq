@@ -15,7 +15,7 @@ Full-stack web application framework that uses Python and MariaDB on the server 
 ### Production
 * [Managed Hosting on Saashq Cloud](https://saashqcloud.com/)
 * [Easy install script using Docker images](https://github.com/saashqdev/wrench/tree/develop#easy-install-script)
-* [Manual install using Docker images](https://github.com/saashqdev/saashq_docker)
+* [Manual install using Docker images](https://github.com/saashqdev/saashq-docker)
 
 ### Development
 * [Easy install script using Docker images](https://github.com/saashqdev/wrench/tree/develop#easy-install-script)

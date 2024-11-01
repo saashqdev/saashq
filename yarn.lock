@@ -223,9 +223,9 @@
   resolved "https://registry.yarnpkg.com/@saashq/charts/-/charts-2.0.0-rc25.tgz#dd95edd01ea218aefd3790ef11cf415b186126d0"
   integrity sha512-Dwftxe2IKXqR7mrpYGRNAzVLnI4oLSuQTXmn379FvBN7M4bQLYakktM/jI6Zsnly42XGTDqL1yLrBZdEjUmGrw==
 
-"@saashq/datatable@1.17.17":
+"frappe-datatable@1.17.17":
   version "1.17.17"
-  resolved "https://registry.yarnpkg.com/@saashq/datatable/-/datatable-1.17.17.tgz#95a8113bbbbd840dbb14d8dbe0a62eb7aedecb17"
+  resolved "https://registry.yarnpkg.com/frappe-datatable/-/datatable-1.17.17.tgz#95a8113bbbbd840dbb14d8dbe0a62eb7aedecb17"
   integrity sha512-CsGrksa7JdDmi1xN5yPF914gepNqSjPYzZDZxfkZkfQT1YmNonIoMVsdRMmisYOX99WOXUQerVVz9i/NmC7vgw==
   dependencies:
     hyperlist "^1.0.0-beta"
