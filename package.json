@@ -52,7 +52,7 @@
     "fast-deep-equal": "^2.0.1",
     "fast-glob": "^3.2.5",
     "@saashq/charts": "^2.0.0-rc25",
-    "frappe-datatable": "^1.17.16",
+    "@saashq-datatable": "^1.17.17",
     "@saashq/gantt": "^0.9.0",
     "highlight.js": "^10.4.1",
     "html5-qrcode": "^2.3.8",
