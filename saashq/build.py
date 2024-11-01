@@ -254,7 +254,7 @@ def bundle(
 
 	check_node_executable()
 	saashq_app_path = saashq.get_app_source_path("saashq")
-	saashq.orgmands.popen(command, cwd=saashq_app_path, env=get_node_env(), raise_err=True)
+	saashq.commands.popen(command, cwd=saashq_app_path, env=get_node_env(), raise_err=True)
 
 
 def watch(apps=None):
@@ -272,7 +272,7 @@ def watch(apps=None):
 
 	check_node_executable()
 	saashq_app_path = saashq.get_app_source_path("saashq")
-	saashq.orgmands.popen(command, cwd=saashq_app_path, env=get_node_env())
+	saashq.commands.popen(command, cwd=saashq_app_path, env=get_node_env())
 
 
 def check_node_executable():

@@ -27,9 +27,9 @@ from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_fi
 
 # imports - module imports
 import saashq
-import saashq.orgmands.scheduler
-import saashq.orgmands.site
-import saashq.orgmands.utils
+import saashq.commands.scheduler
+import saashq.commands.site
+import saashq.commands.utils
 import saashq.recorder
 from saashq.installer import add_to_installed_apps, remove_app
 from saashq.query_builder.utils import db_type_is
@@ -113,7 +113,7 @@ def cli(cmd: Command, args: list | None = None):
 	with maintain_locals():
 		global _result
 
-		patch_ctx = patch("saashq.orgmands.pass_context", pass_test_context)
+		patch_ctx = patch("saashq.commands.pass_context", pass_test_context)
 		_module = cmd.callback.__module__
 		_cmd = cmd.callback.__qualname__
 
@@ -878,7 +878,7 @@ class TestRemoveApp(IntegrationTestCase):
 
 class TestSiteMigration(BaseTestCommands):
 	def test_migrate_cli(self):
-		with cli(saashq.orgmands.site.migrate) as result:
+		with cli(saashq.commands.site.migrate) as result:
 			self.assertTrue(TEST_SITE in result.stdout)
 			self.assertEqual(result.exit_code, 0)
 			self.assertEqual(result.exception, None)
@@ -897,7 +897,7 @@ class TestAddNewUser(BaseTestCommands):
 
 class TestWrenchBuild(BaseTestCommands):
 	def test_build_assets_size_check(self):
-		with cli(saashq.orgmands.utils.build, "--force --production --app saashq") as result:
+		with cli(saashq.commands.utils.build, "--force --production --app saashq") as result:
 			self.assertEqual(result.exit_code, 0)
 			self.assertEqual(result.exception, None)
 
@@ -940,7 +940,7 @@ class TestSchedulerUtils(BaseTestCommands):
 		reraise=True,
 	)
 	def test_ready_for_migrate(self):
-		with cli(saashq.orgmands.scheduler.ready_for_migration) as result:
+		with cli(saashq.commands.scheduler.ready_for_migration) as result:
 			self.assertEqual(result.exit_code, 0)
 
 

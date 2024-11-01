@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 import click
 
 import saashq
-from saashq.orgmands import get_site, pass_context
+from saashq.commands import get_site, pass_context
 from saashq.utils.wrench_helper import CliCtxObj
 
 if TYPE_CHECKING:
@@ -463,7 +463,7 @@ def run_ui_tests(
 				"@cypress/code-coverage@^3",
 			]
 		)
-		saashq.orgmands.popen(f"(cd ../saashq && yarn add {packages} --no-lockfile)")
+		saashq.commands.popen(f"(cd ../saashq && yarn add {packages} --no-lockfile)")
 
 	# run for headless mode
 	run_or_open = f"run --browser {browser}" if headless else "open"
@@ -482,7 +482,7 @@ def run_ui_tests(
 		formatted_command += " " + " ".join(cypressargs)
 
 	click.secho("Running Cypress...", fg="yellow")
-	saashq.orgmands.popen(formatted_command, cwd=app_base_path, raise_err=True)
+	saashq.commands.popen(formatted_command, cwd=app_base_path, raise_err=True)
 
 
 commands = [

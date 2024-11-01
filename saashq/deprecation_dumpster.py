@@ -370,7 +370,7 @@ def test_runner_add_to_test_record_log(doctype):
 	"no public api anymore",
 )
 def test_runner_main(*args, **kwargs):
-	from saashq.orgmands.testing import main
+	from saashq.commands.testing import main
 
 	return main(*args, **kwargs)
 

@@ -9,7 +9,7 @@ import click
 
 # imports - module imports
 import saashq
-from saashq.orgmands import get_site, pass_context
+from saashq.commands import get_site, pass_context
 from saashq.exceptions import SiteNotSpecifiedError
 from saashq.utils import CallbackManager
 from saashq.utils.wrench_helper import CliCtxObj
@@ -782,7 +782,7 @@ def reload_doctype(context: CliCtxObj, doctype):
 def add_to_hosts(context: CliCtxObj):
 	"Add site to hosts"
 	for site in context.sites:
-		saashq.orgmands.popen(f"echo 127.0.0.1\t{site} | sudo tee -a /etc/hosts")
+		saashq.commands.popen(f"echo 127.0.0.1\t{site} | sudo tee -a /etc/hosts")
 	if not context.sites:
 		raise SiteNotSpecifiedError
 
