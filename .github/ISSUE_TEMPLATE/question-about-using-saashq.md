@@ -6,7 +6,7 @@ labels: invalid
 
 Please post on our forums:
 
-for questions about using the `Saashq Framework`: ~~https://discuss.saashq.io~~ => [stackoverflow](https://stackoverflow.com/questions/tagged/saashq) tagged under `saashq`
+for questions about using the `Saashq Framework`: ~~https://discuss.saashq.org~~ => [stackoverflow](https://stackoverflow.com/questions/tagged/saashq) tagged under `saashq`
 
 for questions about using `ERPNexus`: https://discuss.erpnexus.com
 

@@ -82,6 +82,6 @@ class TestWebForm(IntegrationTestCase):
 			content,
 		)
 		self.assertIn(
-			self.normalize_html('<meta property="og:image" content="https://saashq.io/files/saashq.png">'),
+			self.normalize_html('<meta property="og:image" content="https://saashq.org/files/saashq.png">'),
 			content,
 		)

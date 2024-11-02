@@ -1,4 +1,4 @@
-// Copyright (c) 2023-Present, SaasHQ
+// Copyright (c) 2018, Saashq Technologies and contributors
 // For license information, please see license.txt
 
 const DATE_BASED_EVENTS = ["Days Before", "Days After"];

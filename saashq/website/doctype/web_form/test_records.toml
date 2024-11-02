@@ -15,7 +15,7 @@ success_url = "/manage-events"
 title = "Manage Events"
 meta_title = "Test Meta Form Title"
 meta_description = "Test Meta Form Description"
-meta_image = "https://saashq.io/files/saashq.png"
+meta_image = "https://saashq.org/files/saashq.png"
 [["Web Form".web_form_fields]]
 doctype = "Web Form Field"
 fieldname = "subject"

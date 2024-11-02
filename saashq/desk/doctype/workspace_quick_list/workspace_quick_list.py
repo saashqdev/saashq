@@ -1,4 +1,4 @@
-# Copyright (c) 2023-Present, SaasHQ
+# Copyright (c) 2022, Saashq Technologies and contributors
 # For license information, please see license.txt
 
 # import saashq

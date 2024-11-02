@@ -6,7 +6,7 @@ Feature requests are also a great way to take the product forward. New ideas can
 
 When you are raising an Issue, you should keep a few things in mind. Remember that the developer does not have access to your machine so you must give all the information you can while raising an Issue. If you are suggesting a feature, you should be very clear about what you want.
 
-The Issue list is not the right place to ask a question or start a general discussion. If you want to do that , then the right place is the forum ~~<https://discuss.saashq.io>~~ => [stackoverflow](https://stackoverflow.com/questions/tagged/saashq) tagged under `saashq`.
+The Issue list is not the right place to ask a question or start a general discussion. If you want to do that , then the right place is the forum ~~<https://discuss.saashq.org>~~ => [stackoverflow](https://stackoverflow.com/questions/tagged/saashq) tagged under `saashq`.
 
 ### Reply and Closing Policy
 

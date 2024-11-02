@@ -1,4 +1,4 @@
-# Copyright (c) 2023-Present, SaasHQ
+# Copyright (c) 2017, Saashq Technologies and contributors
 # License: MIT. See LICENSE
 import os
 import os.path

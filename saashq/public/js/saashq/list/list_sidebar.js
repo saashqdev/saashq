@@ -294,7 +294,7 @@ saashq.views.ListSidebar = class ListSidebar {
 			}
 
 			const message = __("Get more insights with");
-			const link = "https://saashq.io/s/insights";
+			const link = "https://saashq.org/s/insights";
 			const cta = "Saashq Insights";
 
 			this.insights_banner = $(`

@@ -6,7 +6,7 @@ def execute():
 	doc = saashq.get_single("System Settings")
 	doc.enable_chat = 1
 
-	# Changes prescribed by Nabin Hait (nabin@saashq.io)
+	# Changes prescribed by Nabin Hait (nabin@saashq.org)
 	doc.flags.ignore_mandatory = True
 	doc.flags.ignore_permissions = True
 

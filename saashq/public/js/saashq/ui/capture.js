@@ -1,5 +1,5 @@
 // saashq.ui.Capture
-// Author - Achilles Rasquinha <achilles@saashq.io>
+// Author - Achilles Rasquinha <achilles@saashq.org>
 
 /**
  * @description Converts a canvas, image or a video to a data URL string.

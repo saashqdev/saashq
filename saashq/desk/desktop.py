@@ -1,6 +1,6 @@
 # Copyright (c) 2023-Present, SaasHQ
 # License: MIT. See LICENSE
-# Author - Shivam Mishra <shivam@saashq.io>
+# Author - Shivam Mishra <shivam@saashq.org>
 
 from functools import wraps
 from json import JSONDecodeError, dumps, loads

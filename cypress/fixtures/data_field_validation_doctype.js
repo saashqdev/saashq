@@ -37,7 +37,7 @@ export default {
 			label: "Read Only URL",
 			options: "URL",
 			read_only: "1",
-			default: "https://saashq.io",
+			default: "https://saashq.org",
 		},
 	],
 	issingle: 1,

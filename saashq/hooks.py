@@ -11,7 +11,7 @@ app_logo_url = "/assets/saashq/images/saashq-framework-logo.svg"
 develop_version = "15.x.x-develop"
 app_home = "/app/build"
 
-app_email = "dev@saashq.org"
+app_email = "developers@saashq.org"
 
 before_install = "saashq.utils.install.before_install"
 after_install = "saashq.utils.install.after_install"
@@ -552,7 +552,7 @@ standard_help_items = [
 	{
 		"item_label": "Saashq Support",
 		"item_type": "Route",
-		"route": "https://saashq.io/support",
+		"route": "https://saashq.org/support",
 		"is_standard": 1,
 	},
 ]

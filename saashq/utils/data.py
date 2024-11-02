@@ -1811,7 +1811,7 @@ def url_contains_port(url: str) -> bool:
 def get_host_name() -> str:
 	"""Return the hostname of the current site.
 
-	e.g. If site is 'https://cloud.saashq.io', returns 'cloud.saashq.io'.
+	e.g. If site is 'https://cloud.saashq.org', returns 'cloud.saashq.org'.
 	"""
 	return get_url().rsplit("//", 1)[-1]
 
@@ -1820,7 +1820,7 @@ def get_link_to_form(doctype: str, name: str | None = None, label: str | None = 
 	"""Return the HTML link to the given document's form view.
 
 	e.g. get_link_to_form("Sales Invoice", "INV-0001", "Link Label") returns:
-	    '<a href="https://saashq.io/app/sales-invoice/INV-0001">Link Label</a>'.
+	    '<a href="https://saashq.org/app/sales-invoice/INV-0001">Link Label</a>'.
 	"""
 	from saashq import _
 
@@ -1840,7 +1840,7 @@ def get_link_to_report(
 	"""Return the HTML link to the given report.
 
 	e.g. get_link_to_report("Revenue Report", "Link Label") returns:
-	        '<a href="https://saashq.io/app/query-report/Revenue%20Report">Link Label</a>'.
+	        '<a href="https://saashq.org/app/query-report/Revenue%20Report">Link Label</a>'.
 	"""
 	if not label:
 		label = name
@@ -1876,8 +1876,8 @@ def get_absolute_url(doctype: str, name: str) -> str:
 def get_url_to_form(doctype: str, name: str | None = None) -> str:
 	"""Return the absolute URL for the form view of the given document in the desk.
 
-	e.g. when doctype="Sales Invoice" and your site URL is "https://saashq.io",
-	         returns 'https://saashq.io/app/sales-invoice/INV-00001'
+	e.g. when doctype="Sales Invoice" and your site URL is "https://saashq.org",
+	         returns 'https://saashq.org/app/sales-invoice/INV-00001'
 	"""
 	if not name:
 		uri = f"/app/{quoted(slug(doctype))}"
@@ -1890,8 +1890,8 @@ def get_url_to_form(doctype: str, name: str | None = None) -> str:
 def get_url_to_list(doctype: str) -> str:
 	"""Return the absolute URL for the list view of the given document in the desk.
 
-	e.g. when doctype="Sales Invoice" and your site URL is "https://saashq.io",
-	         returns 'https://saashq.io/app/sales-invoice'
+	e.g. when doctype="Sales Invoice" and your site URL is "https://saashq.org",
+	         returns 'https://saashq.org/app/sales-invoice'
 	"""
 	return get_url(uri=f"/app/{quoted(slug(doctype))}")
 
@@ -1899,12 +1899,12 @@ def get_url_to_list(doctype: str) -> str:
 def get_url_to_report(name, report_type: str | None = None, doctype: str | None = None) -> str:
 	"""Return the absolute URL for the report in the desk.
 
-	e.g. when name="Sales Register" and your site URL is "https://saashq.io",
-	         returns 'https://saashq.io/app/query-report/Sales%20Register'
+	e.g. when name="Sales Register" and your site URL is "https://saashq.org",
+	         returns 'https://saashq.org/app/query-report/Sales%20Register'
 
 	You can optionally pass `report_type` and `doctype` to get the URL for a Report Builder report.
 
-	get_url_to_report("Revenue", "Report Builder", "Sales Invoice") -> 'https://saashq.io/app/sales-invoice/view/report/Revenue'
+	get_url_to_report("Revenue", "Report Builder", "Sales Invoice") -> 'https://saashq.org/app/sales-invoice/view/report/Revenue'
 	"""
 	if report_type == "Report Builder":
 		return get_url(uri=f"/app/{quoted(slug(doctype))}/view/report/{quoted(name)}")
@@ -2147,8 +2147,8 @@ def sanitize_column(column_name: str) -> None:
 def scrub_urls(html: str) -> str:
 	"""Expand relative urls in the given `html`.
 
-	e.g. If HTML is '<a href="/files/abc.jpeg">View Image</a>' and site URL is 'https://saashq.io',
-	        returns '<a href="https://saashq.io/files/abc.jpeg">View Image</a>'.
+	e.g. If HTML is '<a href="/files/abc.jpeg">View Image</a>' and site URL is 'https://saashq.org',
+	        returns '<a href="https://saashq.org/files/abc.jpeg">View Image</a>'.
 	"""
 	return expand_relative_urls(html)
 
@@ -2156,8 +2156,8 @@ def scrub_urls(html: str) -> str:
 def expand_relative_urls(html: str) -> str:
 	"""Expand relative urls in the given `html`.
 
-	e.g. If HTML is '<a href="/files/abc.jpeg">View Image</a>' and site URL is 'https://saashq.io',
-	        returns '<a href="https://saashq.io/files/abc.jpeg">View Image</a>'.
+	e.g. If HTML is '<a href="/files/abc.jpeg">View Image</a>' and site URL is 'https://saashq.org',
+	        returns '<a href="https://saashq.org/files/abc.jpeg">View Image</a>'.
 	"""
 	# expand relative urls
 	url = get_url()
@@ -2186,7 +2186,7 @@ def expand_relative_urls(html: str) -> str:
 def quoted(url: str) -> str:
 	"""Return the given `url` quoted.
 
-	e.g. 'https://saashq.io/files/my Image file.jpeg' -> 'https://saashq.io/files/my%20Image%20file.jpeg'
+	e.g. 'https://saashq.org/files/my Image file.jpeg' -> 'https://saashq.org/files/my%20Image%20file.jpeg'
 	"""
 	return cstr(quote(encode(cstr(url)), safe=b"~@#$&()*!+=:;,.?/'"))
 
@@ -2391,7 +2391,7 @@ def get_user_info_for_avatar(user_id: str) -> _UserInfo:
 	"""Return user info for the given `user_id` suitable for use in an avatar.
 
 	e.g. {
-	        "email": "faris@saashq.io",
+	        "email": "faris@saashq.org",
 	        "image": "/assets/saashq/images/ui/avatar.png",
 	        "name": "Faris Ansari"
 	}

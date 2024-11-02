@@ -12,7 +12,7 @@ context("URL Data Field Input", () => {
 	describe("URL Data Field Input ", () => {
 		it("should not show URL link button without focus", () => {
 			cy.new_form(doctype_name);
-			cy.get_field("url").clear().type("https://saashq.io");
+			cy.get_field("url").clear().type("https://saashq.org");
 			cy.get_field("url").blur().wait(500);
 			cy.get(".link-btn").should("not.be.visible");
 		});
@@ -28,8 +28,8 @@ context("URL Data Field Input", () => {
 		});
 
 		it("should have valid URL link with target _blank", () => {
-			cy.get_field("url").clear().type("https://saashq.io");
-			cy.get(".link-btn .btn-open").should("have.attr", "href", "https://saashq.io");
+			cy.get_field("url").clear().type("https://saashq.org");
+			cy.get(".link-btn .btn-open").should("have.attr", "href", "https://saashq.org");
 			cy.get(".link-btn .btn-open").should("have.attr", "target", "_blank");
 		});
 

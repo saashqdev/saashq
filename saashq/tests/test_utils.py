@@ -387,7 +387,7 @@ class TestValidationUtils(IntegrationTestCase):
 
 		# Valid URLs
 		self.assertTrue(validate_url("https://google.com"))
-		self.assertTrue(validate_url("http://saashq.io", throw=True))
+		self.assertTrue(validate_url("http://saashq.org", throw=True))
 
 		# Invalid URLs without throw
 		self.assertFalse(validate_url("google.io"))
@@ -399,11 +399,11 @@ class TestValidationUtils(IntegrationTestCase):
 		# Scheme validation
 		self.assertFalse(validate_url("https://google.com", valid_schemes="http"))
 		self.assertTrue(validate_url("ftp://saashq.cloud", valid_schemes=["https", "ftp"]))
-		self.assertFalse(validate_url("bolo://saashq.io", valid_schemes=("http", "https", "ftp", "ftps")))
+		self.assertFalse(validate_url("bolo://saashq.org", valid_schemes=("http", "https", "ftp", "ftps")))
 		self.assertRaises(
 			saashq.ValidationError,
 			validate_url,
-			"gopher://saashq.io",
+			"gopher://saashq.org",
 			valid_schemes="https",
 			throw=True,
 		)
@@ -414,14 +414,14 @@ class TestValidationUtils(IntegrationTestCase):
 		self.assertFalse(validate_email_address(None))
 
 		# Valid addresses
-		self.assertTrue(validate_email_address("someone@saashq.org"))
-		self.assertTrue(validate_email_address("someone@saashq.org, anyone@saashq.io"))
-		self.assertTrue(validate_email_address("test%201@saashq.org"))
+		self.assertTrue(validate_email_address("someone@saashq.com"))
+		self.assertTrue(validate_email_address("someone@saashq.com, anyone@saashq.org"))
+		self.assertTrue(validate_email_address("test%201@saashq.com"))
 
 		# Invalid address
 		self.assertFalse(validate_email_address("someone"))
 		self.assertFalse(validate_email_address("someone@----.com"))
-		self.assertFalse(validate_email_address("test 1@saashq.org"))
+		self.assertFalse(validate_email_address("test 1@saashq.com"))
 		self.assertFalse(validate_email_address("test@example.com test2@example.com,undisclosed-recipient"))
 
 		# Invalid with throw
@@ -432,10 +432,10 @@ class TestValidationUtils(IntegrationTestCase):
 			throw=True,
 		)
 
-		self.assertEqual(validate_email_address("Some%20One@saashq.org"), "Some%20One@saashq.org")
+		self.assertEqual(validate_email_address("Some%20One@saashq.com"), "Some%20One@saashq.com")
 		self.assertEqual(
-			validate_email_address("erp+Job%20Applicant=JA00004@saashq.org"),
-			"erp+Job%20Applicant=JA00004@saashq.org",
+			validate_email_address("erp+Job%20Applicant=JA00004@saashq.com"),
+			"erp+Job%20Applicant=JA00004@saashq.com",
 		)
 
 	def test_valid_phone(self):
@@ -958,15 +958,15 @@ class TestLazyLoader(IntegrationTestCase):
 
 class TestIdenticon(IntegrationTestCase):
 	def test_get_gravatar(self):
-		# dev@saashq.org has a gravatar linked so str URL will be returned
+		# developers@saashq.org has a gravatar linked so str URL will be returned
 		saashq.flags.in_test = False
-		gravatar_url = get_gravatar("dev@saashq.org")
+		gravatar_url = get_gravatar("developers@saashq.org")
 		saashq.flags.in_test = True
 		self.assertIsInstance(gravatar_url, str)
 		self.assertTrue(gravatar_url.startswith("http"))
 
 		# random email will require Identicon to be generated, which will be a base64 string
-		gravatar_url = get_gravatar(f"developers{random_string(6)}@saashq.io")
+		gravatar_url = get_gravatar(f"developers{random_string(6)}@saashq.org")
 		self.assertIsInstance(gravatar_url, str)
 		self.assertTrue(gravatar_url.startswith("data:image/png;base64,"))
 

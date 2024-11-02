@@ -470,7 +470,7 @@ class TestFile(IntegrationTestCase):
 
 	def test_file_url_validation(self):
 		test_file: "File" = saashq.new_doc("File")
-		test_file.update({"file_name": "logo", "file_url": "https://saashq.io/files/saashq.png"})
+		test_file.update({"file_name": "logo", "file_url": "https://saashq.org/files/saashq.png"})
 
 		self.assertIsNone(test_file.validate())
 
